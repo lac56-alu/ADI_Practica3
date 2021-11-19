@@ -1,9 +1,11 @@
 //Cargamos el módulo express
 const path = require("path")
 const express = require('express');
+const cors = require('cors')
 
 const app = express();
 app.use(express.json())
+app.use(cors())
 
 var jwt = require('jwt-simple')
 var jwt2 = require('jsonwebtoken')
