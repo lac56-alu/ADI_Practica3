@@ -1,14 +1,17 @@
 <template>
   <div class="login">
     <h1 class="title">Login in the page</h1>
-    <form action class="form">
-        <label class="form-label" for="#userName">User: </label>
-        <input v-model="userName" type="text" required placeholder="userName">
-        <!-- <input class="form-input" type="text" id="userName" required placeholder="userName"> -->
-        <label class="form-label" for="#password">Password: </label>
-        <input v-model="password" type="password" required placeholder="password">
-        <!-- <input class="form-input" type="password" id="password" required placeholder="Password"> -->
+    <form name="form" @submit.prevent="loginUser">
+        <label for="userName">User: </label>
+        <input class="form-control" v-model="captarUserName" type="text" name="userName" required placeholder="userName">
+        <!-- CONTROL DE ERRORES -> TEXTO EN ROJO -->
+
+        <label for="password">Password: </label>
+        <input class="form-control" v-model="captarPassword" type="password" name="password" required placeholder="password">
+        <!-- CONTROL DE ERRORES -> TEXTO EN ROJO -->
+
         <input class="form-submit" type="submit" value="Login">
+        
     </form>
   </div>
 </template>
@@ -17,14 +20,15 @@
     import { login } from '../services/UserService';
 
     export default {
-        data: () => ({
-            userName: "",
-            password: ""
-        }),
-        methods: {                    
-            loginUser(data) {
-                console.log('data:::', data)
-                login(data).then(response => {
+        data() {
+            return{
+                captarUserName: '',
+                captarPassword: ''
+            }
+        },
+        methods: {       
+            loginUser() {
+                login(this.captarUserName, this.captarPassword).then(response => {
                     console.log(response);
                 });
             }
