@@ -23,10 +23,12 @@
 
 <script>
     import { login } from '../services/UserService';
+    import User from '../models/user';
 
     export default {
         data() {
             return{
+                user: new User('',''),
                 captarUserName: '',
                 captarPassword: '',
                 registrado: false,
@@ -41,7 +43,8 @@
                 login(this.captarUserName, this.captarPassword).then(response => {
                     if(response.token){
                         this.registrado = true
-                        console.log(response.token)
+                        console.log(response)
+                        localStorage.setItem('token', response.token)
                         this.token = response.token 
                     }
                     else{
