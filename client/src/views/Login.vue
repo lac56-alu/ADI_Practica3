@@ -13,6 +13,11 @@
         <input class="form-submit" type="submit" value="Login">
         
     </form>
+
+    <div v-show="registrado">
+        {{ token }}
+    </div>
+
   </div>
 </template>
 
@@ -23,13 +28,26 @@
         data() {
             return{
                 captarUserName: '',
-                captarPassword: ''
+                captarPassword: '',
+                registrado: false,
+                token: ""
             }
+        },
+        computed:{
+            //operaciones que hacer sobre las propiedades que queramos
         },
         methods: {       
             loginUser() {
                 login(this.captarUserName, this.captarPassword).then(response => {
-                    console.log(response);
+                    if(response.token){
+                        this.registrado = true
+                        console.log(response.token)
+                        this.token = response.token 
+                    }
+                    else{
+                        console.log("tonto")
+                    }
+                    
                 });
             }
         }
