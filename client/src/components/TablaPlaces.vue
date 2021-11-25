@@ -14,6 +14,7 @@
         <tr v-for="place in places" :key="place.id">
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
+
         </tr>
       </tbody>
     </table>
@@ -24,12 +25,19 @@
 
 .table{
     margin: 0 auto;
-    border-spacing: 10px;
+    border-spacing: 0;
 }
 
-#th {
-    text-align: center; 
+th {
+  padding: 15px;
 }
+
+td {
+  padding: 15px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
 
 </style>
 

@@ -1,5 +1,12 @@
 <template>
-  <div class="about">
+  <div>
+    <div>
+<nav><ul>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Registro</a></li>
+    </ul></nav>
+    </div>
+
     <h1>Lista de los lugares:</h1>
         <div class="row">
       <div class="col-md-12">
@@ -9,6 +16,7 @@
   </div>
 
 </template>
+
 
 
 <script>
@@ -44,7 +52,28 @@ export default {
   }
 }
 
-
-
 </script>
 
+<style scoped>
+nav a{
+    text-decoration:none;
+    color:inherit;
+    font-size:14px;
+    } 
+    nav li{
+    display:inline-block;
+    width:10%;
+    padding:5px 10px;
+    background-color:#000;
+    border:1px solid #000;
+    text-align:center;
+    color:#fff;
+    }
+    nav li:hover{
+    background-color:#fff;
+    color:#000;
+    }
+
+</style>
+
+         
