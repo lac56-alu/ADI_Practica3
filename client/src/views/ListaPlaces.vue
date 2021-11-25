@@ -1,14 +1,17 @@
 <template>
   <div>
     <div>
-<nav><ul>
-        <li><a href="#">Login</a></li>
-        <li><a href="#">Registro</a></li>
-    </ul></nav>
+      <nav>
+        <ul>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Registro</a></li>
+        </ul>
+      </nav>
     </div>
 
     <h1>Lista de los lugares:</h1>
-        <div class="row">
+    
+    <div class="row">
       <div class="col-md-12">
         <tabla-places :places="places"/>
       </div>

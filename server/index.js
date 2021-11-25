@@ -61,6 +61,46 @@ function getTokenFromAuthHeader(pet) {
 }
 
 
+
+
+// GET API/MI/PLACE (devuelve todos los datos de una coleccion/tabla creados por el usuario loggeado)
+   // para devolver toda la colección de cualquier tabla, sí hace falta estar loggeado
+app.get('/api/mi/place/', checkJWT, async function(pet, resp){
+ 
+   
+   var token = getTokenFromAuthHeader(pet)
+   var decoded = jwt.decode(token, secret);
+
+   var consult = await knex.select().table('user').where('userName', decoded.login).asCallback(function(error, res){
+      if(error){
+         resp.status(500).send({error: "Error interno"})
+      }else{
+         var aux_id = res[0].id; //id del usuario que ha iniciado sesion
+
+         knex.select().table('place').where('user_id', aux_id).asCallback(function(error, res){ //buscamos lugares creados por el usuario loggeado
+            if(error){
+               resp.status(500).send({error: "Error interno"})
+            }
+            else{   
+               if(res == 0){
+                  resp.status(404).send({"respuesta": "Error"})
+                  
+               }else{
+
+               
+                     console.log(res)
+                     resp.status(200).send({"respuesta": res})
+                           
+                     
+                    
+               }
+            }
+         })
+      }    
+   })
+});
+
+
 // GET API/COLECCION (devuelve todos los datos de una coleccion/tabla)
    // para devolver toda la colección de cualquier tabla, no hace falta estar loggeado
    // este método es genérico, devuelve cualquier colección de la base de dato
@@ -397,6 +437,14 @@ app.post('/api/user/registro', async function(pet, resp){
       resp.status(400).send({error: "Falta algun parametro obligatorio"})
    }
 });
+
+
+///////////////////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////////////////
 
 
 
