@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     
     <form action class="form" @submit.prevent="register">
  <ul>
@@ -31,10 +32,19 @@
  </ul>
 </form>
 
+=======
+  <div class="register">
+    <h1> Register Page</h1>
+    <div>
+      {{ registro() }}
+    </div>
+  </div>
+>>>>>>> luis
 </template>
 
 
 <script>
+<<<<<<< HEAD
 export default {
   data(){
     return{
@@ -71,3 +81,19 @@ export default {
 };
 </script>
 
+=======
+  export default {
+    data() {
+      return{
+        token: ""
+      }
+    },
+    methods: {
+      registro(){
+        console.log(localStorage.token)
+        this.token = localStorage.token
+      } 
+    }
+  };
+</script>
+>>>>>>> luis
