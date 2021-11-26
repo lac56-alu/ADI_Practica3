@@ -44,13 +44,14 @@
                     if(response.token){
                         this.registrado = true
                         console.log(response)
-                        localStorage.setItem('token', response.token)
+                        localStorage.setItem('user', this.user);
+                        localStorage.user = this.captarUserName;
+                        localStorage.token = response.token;
                         this.token = response.token 
                     }
                     else{
-                        console.log("tonto")
+                        console.log("no token")
                     }
-                    
                 });
             }
         }
