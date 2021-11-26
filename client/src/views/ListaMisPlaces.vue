@@ -13,7 +13,7 @@
     
     <div class="row">
       <div class="col-md-12">
-        <tabla-places :myplaces="myplaces"/>
+        <tabla-my-places :myplaces="myplaces"/>
       </div>
     </div>
   </div>
@@ -32,25 +32,31 @@ export default {
     }
   },
 
-  Components: {
+  components: {
     TablaMyPlaces
   },
   
   methods:{
     async getMyPlaces(){
       try{
-        const response = await fetch('http://localhost:3000/api/mi/place');
-        //console.log(response.json())
+        console.log(localStorage)
+        const response = await fetch('http://localhost:3000/api/mi/place', {
+                method: 'GET',
+                headers: { 'Authotization': 'Bearer ' + localStorage.token },
+            });
         var aux = await response.json();
         this.myplaces = aux['respuesta']['data']
-      } catch (error) {
+        console.log(this.myplaces)
+      } catch (error)  {
+          //En ese caso, no mostrar la vista!!!!!!!!!!!
           console.error(error);
       }
     },
   },
 
-  mounted(){
-    this.getMyPlaces()
+  mounted() {
+      this.getMyPlaces()
+
   }
 }
 
