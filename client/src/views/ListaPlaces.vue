@@ -3,8 +3,8 @@
     <div>
       <nav>
         <ul>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Registro</a></li>
+          <li><a href="/#/login">Login</a></li>
+          <li><a href="/#/register">Registro</a></li>
         </ul>
       </nav>
     </div>

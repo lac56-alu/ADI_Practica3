@@ -1,5 +1,5 @@
 <template>
-  <div id="tabla-places">
+  <div id="tabla-my-places" name="tabla-my-places">
     <div v-if="!myplaces.length" class="alert alert-info" role="alert">
       No existen lugares
     </div>
@@ -43,7 +43,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 <script>
   export default {
-    name: 'tabla-places',
+    name: 'tabla-my-places',
     props: {
        myplaces: Array,
     },

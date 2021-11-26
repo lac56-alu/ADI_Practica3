@@ -67,7 +67,7 @@ function getTokenFromAuthHeader(pet) {
    // para devolver toda la colección de cualquier tabla, sí hace falta estar loggeado
 app.get('/api/mi/place/', checkJWT, async function(pet, resp){
  
-   
+   console.log("aquiiiiiiiiiiiiiiiiiiiiiiiiiii")
    var token = getTokenFromAuthHeader(pet)
    var decoded = jwt.decode(token, secret);
 
@@ -257,6 +257,28 @@ app.delete('/api/place/:id', checkJWT, async function(pet, resp){
 });
 
 
+// DELETE API/USER/ID (elimina el lugar con el id indicado de la tabla indicada)
+app.delete('/api/user/:id', async function(pet,resp) {
+
+   knex.select().table('user').where('id', pet.params.id).delete().asCallback(function(error, res){
+      if(error){
+         resp.status(500).send({error: "Error interno"})
+      }
+      else{  
+
+         if(res == ""){
+            console.log(res)
+            resp.status(404).send({"respuesta": "El id introducido no se encuentra en la base de datos"})
+            
+         }else{
+            console.log(res)
+            resp.status(200).send({"respuesta": "Borrado"})
+            
+         }        
+      }
+   })
+});
+
 // PUT (modifica los elementos con el id de la coleccion place que se le pasen por el body)
    // para poder modificar un lugar, el usuario deberá estar loggeado
    // para modificarlo, el lugar indicado tendrá que haber sido creado por el propio usuario que ha inciado sesion y desea modificarlo
@@ -387,7 +409,7 @@ app.post('/api/user/login', async function(pet, resp){
 
 //REGISTRO /api/user/registro (devuelve el token para poder iniciar sesion)
 app.post('/api/user/registro', async function(pet, resp){
-
+console.log("AQUIIIIIIIIIIIIIIIIIIII")
    var userName = pet.body.userName;
    var pass = pet.body.password;
    var email = pet.body.email;

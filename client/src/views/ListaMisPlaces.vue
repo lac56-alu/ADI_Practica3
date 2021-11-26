@@ -3,7 +3,7 @@
     <div>
       <nav>
         <ul>
-          <li><a href="/places">Ver todos los lugares</a></li>
+          <li><a href="/#/places">Ver todos los lugares</a></li>
           <li><a href="#">Mi perfil</a></li>
         </ul>
       </nav>
@@ -32,8 +32,8 @@ export default {
     }
   },
 
-  components: {
-    TablaMyPlaces,
+  Components: {
+    TablaMyPlaces
   },
   
   methods:{
@@ -77,5 +77,7 @@ nav a{
     }
 
 </style>
+
+
 
          
