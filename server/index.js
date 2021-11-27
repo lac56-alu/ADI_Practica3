@@ -460,16 +460,6 @@ console.log("AQUIIIIIIIIIIIIIIIIIIII")
    }
 });
 
-
-///////////////////////////////////////////////////////
-
-
-
-
-///////////////////////////////////////////////////////
-
-
-
 //Este método delega en el server.listen "nativo" de Node
 app.listen(3000, function () {
    console.log("El servidor express está en el puerto 3000");

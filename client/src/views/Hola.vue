@@ -1,5 +1,7 @@
 <template>
   <div class="about">
-    <h1>This is an hola page</h1>
+    <h1> {{ localStorage.token }} </h1>
   </div>
+
+
 </template>
