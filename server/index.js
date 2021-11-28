@@ -136,7 +136,7 @@ app.get('/api/:coleccion', async function(pet, resp){
       })
    }
    else{
-      var consult = await knex.select().table(pet.params.coleccion).paginate({ perPage: 3, currentPage: 1}).asCallback(function(error, res){
+      var consult = await knex.select().table(pet.params.coleccion).paginate({ perPage: 20, currentPage: 1}).asCallback(function(error, res){
          if(error){
             resp.status(404).send({error: "La colección introducida no existe"})
          }
