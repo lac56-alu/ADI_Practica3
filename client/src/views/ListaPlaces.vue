@@ -1,26 +1,32 @@
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <template>
   <div>
-    <div>
-      <nav>
-        <ul>
-          <li><a href="/#/login">Login</a></li>
-          <li><a href="/#/register">Registro</a></li>
-        </ul>
-      </nav>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">>
+
+    <div class="container">
+  
+        <h1 id="texto">Lista de los lugares:</h1> <br>
+        
+        <div class="row">
+
+          <table id="table" class="table table-striped table-bordered table-hover">
+            <tabla-places :places="places"/>
+          </table>
+
+        </div>
+
     </div>
 
-    <h1>Lista de los lugares:</h1>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <tabla-places :places="places"/>
-      </div>
-    </div>
   </div>
 
 </template>
 
 
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"> </script>
 
 <script>
 import TablaPlaces from '@/components/TablaPlaces.vue';
@@ -58,25 +64,20 @@ export default {
 </script>
 
 <style scoped>
-nav a{
-    text-decoration:none;
-    color:inherit;
-    font-size:14px;
-    } 
-    nav li{
-    display:inline-block;
-    width:10%;
-    padding:5px 10px;
-    background-color:#000;
-    border:1px solid #000;
-    text-align:center;
-    color:#fff;
-    }
-    nav li:hover{
-    background-color:#fff;
-    color:#000;
-    }
+
+#texto{
+  color: #17a2b8;
+  font-weight:400;
+}
+#table{
+  width: 80%;
+}
+
+
+
 
 </style>
+
+
 
          

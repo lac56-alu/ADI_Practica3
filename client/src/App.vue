@@ -2,8 +2,7 @@
   <div id="app">
     <ul>
       <div id="nav">
-        <li> <router-link to="/">Home</router-link> </li>
-        <li> <router-link to="/hola">Hola</router-link> </li>
+        <li> <router-link to="/places">Inicio</router-link> </li>
         <li> <router-link to="/about">About</router-link> </li>
         <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
         <li style="float:right"> <router-link to="/login">Login</router-link> </li>
@@ -34,7 +33,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(197, 189, 189);
+  background-color: #EAEAEA;
 }
 
 li {
@@ -54,7 +53,7 @@ li a {
 }
 
 .active {
-  background-color: #0b54c2;
+  background-color: #17a2b8;
 }
 
 
@@ -63,7 +62,7 @@ li a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #EAEAEA;
 }
 
 #nav a {
@@ -72,6 +71,6 @@ li a {
 }
 
 #nav a.router-link-exact-active {
-  color: #0b54c2;
+  color: #17a2b8;
 }
 </style>

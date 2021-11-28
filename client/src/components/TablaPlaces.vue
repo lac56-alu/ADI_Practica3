@@ -24,20 +24,26 @@
 <style>
 
 .table{
+    width:80%;
     margin: 0 auto;
     border-spacing: 0;
 }
 
 th {
-  padding: 15px;
+  padding: 5px;
 }
 
 td {
-  padding: 15px;
+  padding: 5px;
 }
-
-tr:nth-child(even) {background-color: #f2f2f2;}
-
+table tbody tr:nth-child(even) {
+	background:white;
+}
+table thead {
+  background: #17a2b8;
+  color: white;
+  font-size: 18px;
+}
 
 </style>
 

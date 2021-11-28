@@ -47,13 +47,8 @@ export default {
         });
 
         var aux = await response.json();
-<<<<<<< HEAD
-        console.log(aux)
-        this.myplaces = aux['respuesta']['data']
-=======
         console.log(aux);
         this.myplaces = aux['respuesta']
->>>>>>> luis
         console.log(this.myplaces)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
