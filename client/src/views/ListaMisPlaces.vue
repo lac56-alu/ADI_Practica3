@@ -45,6 +45,7 @@ export default {
                 headers: { 'Authotization': 'Bearer ' + localStorage.token },
             });
         var aux = await response.json();
+        console.log(aux)
         this.myplaces = aux['respuesta']['data']
         console.log(this.myplaces)
       } catch (error)  {
