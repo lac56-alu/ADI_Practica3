@@ -6,13 +6,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Nombre</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="place in places" :key="place.id">
-          <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
 
         </tr>
@@ -24,12 +22,13 @@
 <style>
 
 .table{
-    width:80%;
+    width:10px;
     margin: 0 auto;
     border-spacing: 0;
 }
 
 th {
+  
   padding: 5px;
 }
 

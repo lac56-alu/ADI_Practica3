@@ -5,11 +5,24 @@
 <template>
   <div>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-    <div class="container">
+  <div>
+    <h1 id="titulo"> findyourplace.com</h1>
+  </div>
+
+  <div>
+
+    <img id="img1" src="../imagenes/rom.jpg">
+    <img id="img2" src="../imagenes/ply.jpg">
+    
+
+  </div>
+
+  <div id="todo">
+    <div class="container" style="">
   
-        <h1 id="texto">Lista de los lugares:</h1> <br>
+        <h3 id="texto">Descubre los mejores lugares: </h3> <br>
         
         <div class="row">
 
@@ -20,6 +33,7 @@
         </div>
 
     </div>
+  </div>
 
   </div>
 
@@ -65,13 +79,44 @@ export default {
 
 <style scoped>
 
+#img1{
+
+  width: 500px;
+  height: 250px;
+  position: absolute;
+  display: block;
+  top: 200px;
+  left: 150px;
+}
+
+#img2{
+
+  width: 500px;
+  height: 250px;
+  position: absolute;
+  display: block;
+  top: 500px;
+  left: 250px;
+}
+
+#titulo{
+  font-style: oblique;
+}
+
+#todo {
+  position: relative;
+  top: 50px;
+  left: 400px;
+}
+
 #texto{
   color: #17a2b8;
   font-weight:400;
 }
 #table{
-  width: 80%;
+  width: 500px;
 }
+
 
 </style>
 
