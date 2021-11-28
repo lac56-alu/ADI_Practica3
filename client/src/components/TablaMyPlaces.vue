@@ -8,18 +8,33 @@
         <tr>
           <th>Id</th>
           <th>Nombre</th>
+          <td> </td>
+          <td> </td>
+          <td> </td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="place in myplaces" :key="place.id">
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
+          <td> Ver detalles </td>
+          <td> Eliminar </td>
+          <td> Modificar </td>
 
         </tr>
       </tbody>
     </table>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'tabla-my-places',
+    props: {
+       myplaces: Array,
+    },
+  }
+</script>
 
 <style>
 
@@ -40,13 +55,3 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 
 </style>
-
-<script>
-  export default {
-    name: 'tabla-my-places',
-    props: {
-       myplaces: Array,
-    },
-  }
-</script>
-
