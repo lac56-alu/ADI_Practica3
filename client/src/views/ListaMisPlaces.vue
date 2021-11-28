@@ -40,17 +40,24 @@ export default {
     async getMyPlaces(){
       try{
         console.log(localStorage)
+        var tokenBearer = 'Bearer ' + localStorage.token;
         const response = await fetch('http://localhost:3000/api/mi/place', {
-                method: 'GET',
-                headers: { 'Authotization': 'Bearer ' + localStorage.token },
-            });
+          method: 'GET',
+          headers: { 'Authorization': tokenBearer },
+        });
+
         var aux = await response.json();
+<<<<<<< HEAD
         console.log(aux)
         this.myplaces = aux['respuesta']['data']
+=======
+        console.log(aux);
+        this.myplaces = aux['respuesta']
+>>>>>>> luis
         console.log(this.myplaces)
-      } catch (error)  {
-          //En ese caso, no mostrar la vista!!!!!!!!!!!
-          console.error(error);
+      }catch (error)  {
+        //En ese caso, no mostrar la vista!!!!!!!!!!!
+        console.error(error);
       }
     },
   },

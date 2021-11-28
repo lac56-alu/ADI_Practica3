@@ -16,3 +16,9 @@ export async function login(us, ps) {
 
   return await response.json();
 }
+
+export function logOut() {
+  localStorage.token = ""
+  localStorage.user = ""
+  localStorage.registrado = false
+}

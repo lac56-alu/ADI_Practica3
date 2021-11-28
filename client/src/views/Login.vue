@@ -5,10 +5,14 @@
         <label for="userName">User: </label>
         <input class="form-control" v-model="captarUserName" type="text" name="userName" required placeholder="userName">
         <!-- CONTROL DE ERRORES -> TEXTO EN ROJO -->
+        
+        <br><br>
 
         <label for="password">Password: </label>
         <input class="form-control" v-model="captarPassword" type="password" name="password" required placeholder="password">
         <!-- CONTROL DE ERRORES -> TEXTO EN ROJO -->
+
+        <br><br>
 
         <input class="form-submit" type="submit" value="Login">
         
@@ -43,11 +47,13 @@
                 login(this.captarUserName, this.captarPassword).then(response => {
                     if(response.token){
                         this.registrado = true
+                        this.token = response.token 
                         console.log(response)
-                        localStorage.setItem('user', this.user);
                         localStorage.user = this.captarUserName;
                         localStorage.token = response.token;
-                        this.token = response.token 
+                        localStorage.registrado = true;
+                        console.log(localStorage.user)
+                        
                     }
                     else{
                         console.log("no token")
