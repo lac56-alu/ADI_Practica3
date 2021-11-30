@@ -26,13 +26,16 @@
                                  <!-- CONTROL DE ERRORES -> TEXTO EN ROJO -->
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
+                                <button type="submit" name="submit" class="btn btn-info btn-md" value="Login" >
+                                    Login
+                                </button>
+                                    
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 </template>
 
@@ -64,7 +67,8 @@
                         localStorage.token = response.token;
                         localStorage.registrado = true;
                         console.log(localStorage.user)
-                        this.$router.push('/myplaces');
+                        console.log(this.$router)
+                        this.$router.push({path: 'myplaces'});
                         
                     }
                     else{

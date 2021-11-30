@@ -17,7 +17,7 @@
         <tr v-for="place in myplaces" :key="place.id">
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
-          <td> Ver detalles </td>
+          <td> <router-link :to="{name: 'detalles', params: {id: place.id}}">  Ver detalles </router-link> </td>
           <td> Eliminar </td>
           <td> Modificar </td>
 
