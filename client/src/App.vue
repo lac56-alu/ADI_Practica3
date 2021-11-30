@@ -5,7 +5,7 @@
         <li> <router-link to="/places">Inicio</router-link> </li>
         <li> <router-link to="/about">About</router-link> </li>
         <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
-        <li style="float:right"> <router-link to="/login">Login</router-link> </li>
+        <li v-show="log" style="float:right"> <router-link to="/login">Login</router-link> </li>
         <li style="float:right"> <router-link to="/register">Registro</router-link> </li>
       </div>
     </ul>
@@ -16,10 +16,16 @@
 <script>
 import { logOut } from './services/UserService';
 export default {
+    data(){
+    return{
+      usuario: localStorage.userName,
+      log: localStorage.registrado
+    }
+  },
   methods: {       
     logoutUser() {
       logOut();
-      this.$router.push('/');
+      this.$router.push('/places');
     }
   }
 };

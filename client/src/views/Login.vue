@@ -64,6 +64,7 @@
                         localStorage.token = response.token;
                         localStorage.registrado = true;
                         console.log(localStorage.user)
+                        this.$router.push('/myplaces');
                         
                     }
                     else{
