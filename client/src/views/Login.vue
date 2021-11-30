@@ -32,9 +32,6 @@
                                     
                             </div>
                         </form>
-                         <div v-show="registrado">
-                            {{ token }}
-                        </div>
                     </div>
                 </div>
             </div>
