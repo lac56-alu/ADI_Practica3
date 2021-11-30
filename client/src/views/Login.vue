@@ -29,9 +29,6 @@
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                             </div>
                         </form>
-                         <div v-show="registrado">
-                            {{ token }}
-                        </div>
                     </div>
                 </div>
             </div>
