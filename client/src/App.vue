@@ -19,7 +19,7 @@ export default {
   methods: {       
     logoutUser() {
       logOut();
-      this.$router.Push('/');
+      this.$router.push('/');
     }
   }
 };

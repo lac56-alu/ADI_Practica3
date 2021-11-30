@@ -39,7 +39,9 @@
                                       <label for="mail" class="text-info">Password:  </label>
                                       <input class="form-control" type="text" id="password" name="password" v-model="password">
                                     </li>
-                                    <button id="but_reg" class="btn btn-info btn-md" type="submit" value="Register"> Register </button>
+                                    <button id="but_reg" class="btn btn-info btn-md" type="submit" value="Register" > 
+                                      Register
+                                    </button>
 
                                 </ul>
                         </form>

@@ -37,6 +37,11 @@ const routes = [
     path: '/myplaces',
     name: 'ListaMisPlaces',
     component: () => import('../views/ListaMisPlaces.vue')
+  },
+  {
+    path: '/detalles/:id',
+    name: 'detalles',
+    component: () => import('../views/ListaDetalles.vue')
   }
 ]
 
