@@ -4,8 +4,9 @@
       <div id="nav">
         <li> <router-link to="/places">Inicio</router-link> </li>
         <li> <router-link to="/about">About</router-link> </li>
+        <li> <router-link to="/createPlace">Crear Place</router-link> </li>
         <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
-        <li v-show="log" style="float:right"> <router-link to="/login">Login</router-link> </li>
+        <li style="float:right"> <router-link v-if="registrado == false" to="/login">Login</router-link> </li>
         <li style="float:right"> <router-link to="/register">Registro</router-link> </li>
       </div>
     </ul>
@@ -16,8 +17,9 @@
 <script>
 import { logOut } from './services/UserService';
 export default {
-    data(){
+  data(){
     return{
+      registrado: this.comprobarRegistro(),
       usuario: localStorage.userName,
       log: localStorage.registrado
     }
@@ -26,7 +28,27 @@ export default {
     logoutUser() {
       logOut();
       this.$router.push('/places');
+    },
+    comprobarRegistro(){
+      console.log(this.registrado)
+      if(localStorage.registrado){
+        this.registrado = false
+        return false
+      }
+      else{
+        if(localStorage.registrado == true){
+          this.registrado = localStorage.registrado
+          return true
+        }
+        else{
+          this.registrado = localStorage.registrado
+          return false
+        }
+      }
     }
+  },
+  mounted() {
+    this.comprobarRegistro()
   }
 };
 </script>

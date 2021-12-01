@@ -4,4 +4,3 @@ export default class User {
       this.token = t;
     }
   }
-  
