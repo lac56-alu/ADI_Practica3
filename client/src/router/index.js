@@ -47,6 +47,11 @@ const routes = [
     path: '/categories',
     name: 'ListaCategorias',
     component: () => import('../views/ListaCategorias.vue')
+  },
+  {
+    path: '/eliminar/:id',
+    name: 'eliminar',
+    component: () => import('../views/EliminarPlace.vue')
   }
 ]
 

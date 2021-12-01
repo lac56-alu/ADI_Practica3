@@ -18,7 +18,7 @@
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
           <td> <router-link :to="{name: 'detalles', params: {id: place.id}}">  Ver detalles </router-link> </td>
-          <td> Eliminar </td>
+          <td> <router-link :to="{name: 'eliminar', params: {id: place.id}}">  Eliminar </router-link>  </td>
           <td> Modificar </td>
 
         </tr>
