@@ -12,6 +12,15 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form2" class="form" name="form" @submit.prevent="createPlaces">
                             <h3 class="text-center text-info">Crear Lugar</h3>
+                            
+                            <label for="category" class="text-info">Categoria:  </label><br>
+                            <select for="category" name="category">
+                                <option v-for="cat in categories" :key="cat.id">
+                                    {{ cat.name }}
+                                </option>
+                            </select>
+                            <br><br>
+
                             <label for="name" class="text-info">Nombre:  </label>
                             <input class="form-control" type="text" id="name" name="name" v-model="name">
                             <br>
@@ -24,11 +33,7 @@
                             <input class="form-control" type="text" id="adress" name="adress" v-model="adress">
                             <br>
 
-                            <label for="city" class="text                                -info">Ciudad:  </label>
-                            <input class="form-control" type="text" id="city" name="city" v-model="city">
-                            <br>
-                            
-                            <label for="category" class="text-info">City:  </label>
+                            <label for="city" class="text-info">Ciudad:  </label>
                             <input class="form-control" type="text" id="city" name="city" v-model="city">
                             <br>
                             
@@ -43,13 +48,12 @@
 </template>
 
 <script>
-    import { login } from '../services/UserService';
-    import User from '../models/user';
+    import { getCategory } from '../services/CategoryService';
 
     export default {
         data() {
             return{
-                category: [],
+                categories: '',
                 place: [],
                 userID: '',
                 name: '',
@@ -59,25 +63,17 @@
                 categoryID: '',
             }
         },
-        computed:{
-            //operaciones que hacer sobre las propiedades que queramos
-        },
-        methods: {       
-            createPlaces(){
-                const response = await fetch("http://localhost:3000/api/place", {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({
-                        name: this.name,
-                        decription: this.description,
-                        adress: this.adress,
-                        city: this.city,
-
-                        
-                    })
-                })
-            }
+        created(){
+            var response = getCategory();
+            console.log("CATEGORIAS")
+            console.log(response)
             
+
+        },
+        methods: { 
+            createPlaces(){
+                this.getCategoryFor();
+            }
         }
     };
 </script>
