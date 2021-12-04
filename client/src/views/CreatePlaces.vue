@@ -14,27 +14,28 @@
                             <h3 class="text-center text-info">Crear Lugar</h3>
                             
                             <label for="category" class="text-info">Categoria:  </label><br>
-                            <select for="category" name="category">
-                                <option v-for="cat in categories" :key="cat.id">
-                                    {{ cat.name }}
+                            <select id="selectCategory" for="selectCategory" name="selectCategory">
+                                <option v-for="cat in this.categories" :key="cat[0]">
+                                    {{ cat[1] }}
                                 </option>
                             </select>
                             <br><br>
 
                             <label for="name" class="text-info">Nombre:  </label>
-                            <input class="form-control" type="text" id="name" name="name" v-model="name">
+                            <input class="form-control" type="text" id="name" name="name" v-model="name" required placeholder="Nombre">
                             <br>
 
                             <label for="description" class="text-info">Descripcion:  </label>
-                            <textarea class="form-control" type="text" rows="3" id="description" name="description" v-model="description"></textarea>
+                            <textarea class="form-control" type="text" rows="3" id="description" 
+                            name="description" v-model="description" required placeholder="Descripcion breve"></textarea>
                             <br>
                         
                             <label for="adress" class="text-info">Dirección:  </label>
-                            <input class="form-control" type="text" id="adress" name="adress" v-model="adress">
+                            <input class="form-control" type="text" id="adress" name="adress" v-model="adress" required placeholder="Dirección">
                             <br>
 
                             <label for="city" class="text-info">Ciudad:  </label>
-                            <input class="form-control" type="text" id="city" name="city" v-model="city">
+                            <input class="form-control" type="text" id="city" name="city" v-model="city" required placeholder="Ciudad">
                             <br>
                             
                             <div style="text-align: center;"><button id="but_reg" class="btn btn-info btn-md" type="submit" value="Crear"> Crear </button></div>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-    import { getCategory } from '../services/CategoryService';
+    import { getCategory, getIdCategory } from '../services/CategoryService';
 
     export default {
         data() {
@@ -63,18 +64,20 @@
                 categoryID: '',
             }
         },
-        created(){
-            var response = getCategory();
-            console.log("CATEGORIAS")
-            console.log(response)
-            
-
+        async created() {
+            this.categories = await getCategory();
+            //console.log(this.categories)
         },
         methods: { 
             createPlaces(){
-                this.getCategoryFor();
+                this.name = document.getElementById("name").value;
+                this.description = document.getElementById("description").value;
+                this.adress = document.getElementById("adress").value;
+                this.city = document.getElementById("city").value;
+                this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
+                
             }
-        }
+        },
     };
 </script>
 
