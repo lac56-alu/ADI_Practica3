@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <tr v-for="c in categories" :key="c.id">
-          <td class="transformacion3">{{ c.type }}</td>
+          <td class="transformacion3"> <router-link to="/lugaresCategoria">{{ c.type }}</router-link> </td>
 
         </tr>
       </tbody>
