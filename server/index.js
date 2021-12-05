@@ -60,6 +60,38 @@ function getTokenFromAuthHeader(pet) {
    return undefined
 }
 
+// GET API/PLACES/CATEGORY/:ID (devuelve todos los datos de una coleccion/tabla con la categoria indicada)
+   // para devolver toda la colección de cualquier tabla, sí hace falta estar loggeado
+   app.get('/api/places/category/:id', checkJWT, async function(pet, resp){
+ 
+      var token = getTokenFromAuthHeader(pet)
+      var decoded = jwt.decode(token, secret);
+   
+      var consult = await knex.select().table('user').where('userName', decoded.login).asCallback(function(error, res){
+         if(error){
+            resp.status(500).send({error: "Error interno 1"})
+         }else{
+            //var aux_id = res[0].id; //id del usuario que ha iniciado sesion
+   
+            knex.select().table('place').where('category_id', pet.params.id).asCallback(function(error, res){ //buscamos lugares con esa categoria
+               if(error){
+                  resp.status(500).send({error: "Error interno 2"})
+               }
+               else{   
+                  if(res == 0){
+                     resp.status(404).send({"respuesta": "Error"})
+                     
+                  }else{
+   
+                        console.log(res)
+                        resp.status(200).send({"respuesta": res})
+                          
+                  }
+               }
+            })
+         }    
+      })
+   });
 
 
 
@@ -99,6 +131,8 @@ app.get('/api/mi/place/', checkJWT, async function(pet, resp){
       }    
    })
 });
+
+
 
 
 // GET API/COLECCION (devuelve todos los datos de una coleccion/tabla)

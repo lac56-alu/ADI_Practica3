@@ -3,12 +3,9 @@
     <ul>
       <div id="nav">
         <li> <router-link to="/places">Inicio</router-link> </li>
-<<<<<<< HEAD
         <li> <router-link to="/categories">Categorías</router-link> </li>
-=======
         <li> <router-link to="/about">About</router-link> </li>
         <li> <router-link to="/createPlace">Crear Place</router-link> </li>
->>>>>>> luis
         <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
         <li style="float:right"> <router-link v-if="registrado == false" to="/login">Login</router-link> </li>
         <li style="float:right"> <router-link to="/register">Registro</router-link> </li>
