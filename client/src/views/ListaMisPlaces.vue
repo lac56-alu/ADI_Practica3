@@ -11,7 +11,7 @@
     <div class="container">
   
         <h1 id="texto">Lista de mis lugares:</h1> <br>
-        
+
         <div class="row">
 
           <table id="table" class="table table-striped table-bordered table-hover">
@@ -33,7 +33,8 @@ export default {
 
   data(){
     return{
-      myplaces: []
+      myplaces: [],
+      comprobar: false
     }
   },
 
@@ -63,8 +64,7 @@ export default {
   },
 
   mounted() {
-      this.getMyPlaces()
-
+    this.getMyPlaces()
   }
 }
 

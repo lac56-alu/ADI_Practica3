@@ -109,7 +109,7 @@ app.get('/api/:coleccion', async function(pet, resp){
    var paginaPeticion = pet.query.currentPage;
 
    if(elementosPagina != null && paginaPeticion != null){
-      var consult = await knex.select().table(pet.params.coleccion).paginate({ perPage: elementosPagina, currentPage: paginaPeticion}).asCallback(function(error, res){
+      var consult = await knex.select().table(pet.params.coleccion).paginate({ perPage: 50, currentPage: paginaPeticion}).asCallback(function(error, res){
          if(error){
             resp.status(404).send({error: "La colección introducida no existe"})
          }
@@ -200,7 +200,7 @@ app.post('/api/place', checkJWT, async function(pet, resp){
             if(error){  
                resp.status(404).send({error: "La colección introducida no existe"})
             }
-            else{          
+            else{
                console.log(res)
                resp.status(201).send({"respuesta": "Lugar creado correctamente"})
                

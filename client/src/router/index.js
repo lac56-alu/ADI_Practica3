@@ -57,6 +57,11 @@ const routes = [
     path: '/eliminar/:id',
     name: 'eliminar',
     component: () => import('../views/EliminarPlace.vue')
+  },
+  {
+    path: '/createPlace',
+    name: 'crearPlace',
+    component: () => import('../views/CreatePlaces.vue')
   }
 ]
 
