@@ -50,6 +50,7 @@
 
 <script>
     import { getCategory, getIdCategory } from '../services/CategoryService';
+    import { createPlace } from '../services/PlacesService';
 
     export default {
         data() {
@@ -76,6 +77,10 @@
                 this.city = document.getElementById("city").value;
                 this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
                 
+                var response = createPlace(this.name, this.description, this.adress, this.city, this.categoryID);
+
+                console.log("RESPUESTA POST")
+                console.log(response)
             }
         },
     };
