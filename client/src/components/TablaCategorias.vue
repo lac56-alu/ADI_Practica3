@@ -11,8 +11,9 @@
       </thead>
       <tbody>
         <tr v-for="c in categories" :key="c.id">
-          <td class="transformacion3"> <router-link :to="{name: 'lugaresCategoria', params: {id: c.id}}"> {{ c.type }}</router-link> </td>
-
+          <td class="transformacion3"> 
+            <router-link :to="{name: 'lugaresCategoria', params: {id: c.id}}"> {{ c.type }}</router-link> 
+          </td>
         </tr>
       </tbody>
     </table>
@@ -23,7 +24,7 @@
   export default {
     name: 'tabla-categorias',
     props: {
-       categories: Array,
+      categories: Array,
     },
   }
 </script>

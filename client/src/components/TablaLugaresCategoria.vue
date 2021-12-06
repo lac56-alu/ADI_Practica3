@@ -6,14 +6,14 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>ID</th>
           <th>Nombre</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="place in places_c" :key="place.id">
-          <td>{{ place.id }}</td>
-          <td>{{ place.name }}</td>
+        <tr v-for="place in places_c" :key="place['id']">
+          <td>{{ place['id'] }}</td>
+          <td>{{ place['name'] }}</td>
 
         </tr>
       </tbody>
@@ -25,7 +25,7 @@
   export default {
     name: 'tabla-places-category',
     props: {
-       places_c: Array,
+      places_c: Array,
     },
   }
 </script>
@@ -33,8 +33,8 @@
 <style>
 
 .table{
-    margin: 0 auto;
-    border-spacing: 0;
+  margin: 0 auto;
+  border-spacing: 0;
 }
 
 th {

@@ -32,42 +32,32 @@
 
 <script>
 import TablaLugaresCategoria from '@/components/TablaLugaresCategoria.vue';
-export default {
+import { getPlacesByCategory } from '../services/CategoryService';
 
+export default {
   data(){
     return{
       places_c: []
     }
   },
-
   components: {
     TablaLugaresCategoria,
   },
-  
   methods:{
-    async getPlacesCategory(){
-      try{
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
-        console.log("idCat:")
-        var idCat = this.$route.params.id
-        console.log(idCat)
-        const response = await fetch('http://localhost:3000/api/places/category/' + idCat, {
-          method: 'GET',
-          headers: { 'Authorization': tokenBearer },
-        });
-        var aux = response.json();
-        console.log(aux)
-        this.places_c = aux['respuesta']
-        //console.log(aux['respuesta'])
-      } catch (error) {
-          console.error(error);
-      }
-    },
+    async getPlacesCat(){
+      console.log("PRUEBA LUIIIIIIIIIS")
+      console.log(this.$route.params.id)
+      
+      console.log("RESPUESTA")
+      var p = await getPlacesByCategory(this.$route.params.id)
+      console.log(p)
+      this.place_c = p;
+      console.log("FIINAAAAAAAAAAAAALLL")
+      console.log(this.place_c)
+    }
   },
-
   mounted(){
-    this.getPlacesCategory()
+    this.getPlacesCat()
   }
 }
 

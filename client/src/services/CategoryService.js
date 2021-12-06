@@ -18,3 +18,13 @@ export function getIdCategory(arrayCat, name){
     }
   }
 }
+
+export async function getPlacesByCategory(id) {
+  var tokenBearer = 'Bearer ' + localStorage.token;
+  const response = await fetch('http://localhost:3000/api/places/category/' + id, {
+    method: 'GET',
+    headers: { 'Authorization': tokenBearer },
+  });
+  var resp = await response.json();
+  return resp['respuesta'];
+}
