@@ -44,6 +44,21 @@ const routes = [
     component: () => import('../views/ListaDetalles.vue')
   },
   {
+    path: '/categories',
+    name: 'ListaCategorias',
+    component: () => import('../views/ListaCategorias.vue')
+  },
+  {
+    path: '/lugaresCategoria/:id',
+    name: 'lugaresCategoria',
+    component: () => import('../views/LugaresCategoria.vue')
+  },
+  {
+    path: '/eliminar/:id',
+    name: 'eliminar',
+    component: () => import('../views/EliminarPlace.vue')
+  },
+  {
     path: '/createPlace',
     name: 'crearPlace',
     component: () => import('../views/CreatePlaces.vue')

@@ -1,6 +1,6 @@
 <template>
-  <div id="tabla-my-places" name="tabla-my-places">
-    <div v-if="!myplaces.length" class="alert alert-info" role="alert">
+  <div id="tabla-places-category" name="tabla-places-category">
+    <div v-if="!places_c.length" class="alert alert-info" role="alert">
       No existen lugares
     </div>
     <table class="table">
@@ -8,18 +8,12 @@
         <tr>
           <th>Id</th>
           <th>Nombre</th>
-          <td> </td>
-          <td> </td>
-          <td> </td>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="place in myplaces" :key="place.id">
+        <tr v-for="place in places_c" :key="place.id">
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
-          <td> <router-link :to="{name: 'detalles', params: {id: place.id}}">  Ver detalles </router-link> </td>
-          <td> <router-link :to="{name: 'eliminar', params: {id: place.id}}">  Eliminar </router-link>  </td>
-          <td> Modificar </td>
 
         </tr>
       </tbody>
@@ -29,9 +23,9 @@
 
 <script>
   export default {
-    name: 'tabla-my-places',
+    name: 'tabla-places-category',
     props: {
-       myplaces: Array,
+       places_c: Array,
     },
   }
 </script>
