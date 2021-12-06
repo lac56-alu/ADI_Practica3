@@ -7,7 +7,7 @@
         <li> <router-link to="/about">About</router-link> </li>
         <li> <router-link to="/createPlace">Crear Place</router-link> </li>
         <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
-        <li style="float:right"> <router-link v-if="registrado == false" to="/login">Login</router-link> </li>
+        <li style="float:right"> <router-link to="/login">Login</router-link> </li>
         <li style="float:right"> <router-link to="/register">Registro</router-link> </li>
       </div>
     </ul>
@@ -25,27 +25,30 @@ export default {
       log: localStorage.registrado
     }
   },
+  created() {
+    console.log(this.registrado)
+    if(localStorage.registrado){
+      this.registrado = false
+      return false
+    }
+    else{
+      if(localStorage.registrado == true){
+        this.registrado = localStorage.registrado
+        return true
+      }
+      else{
+        this.registrado = localStorage.registrado
+        return false
+      }
+    }
+  },
   methods: {       
     logoutUser() {
       logOut();
       this.$router.push('/places');
     },
     comprobarRegistro(){
-      console.log(this.registrado)
-      if(localStorage.registrado){
-        this.registrado = false
-        return false
-      }
-      else{
-        if(localStorage.registrado == true){
-          this.registrado = localStorage.registrado
-          return true
-        }
-        else{
-          this.registrado = localStorage.registrado
-          return false
-        }
-      }
+      
     }
   },
   mounted() {

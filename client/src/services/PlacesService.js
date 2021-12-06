@@ -6,7 +6,7 @@ export async function createPlace(n,d,a,ci,ca) {
         method: 'POST',
         headers: { 
             'Authorization': tokenBearer, 
-            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Request-Headers': '*',
             'Content-Type': 'application/json'
         },
         body: {
@@ -21,5 +21,4 @@ export async function createPlace(n,d,a,ci,ca) {
     console.log("RESPUESTA")
     console.log(response)
     return response;
-
 }

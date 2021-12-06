@@ -1,4 +1,4 @@
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
@@ -13,11 +13,9 @@
         <h3 id="texto"> Lugares de la categoría seleccionada: </h3> <br>
         
         <div class="row">
-
           <table id="table" class="table table-striped table-bordered table-hover">
             <tabla-places-category :places_c="places_c"/>
           </table>
-
         </div>
 
     </div>

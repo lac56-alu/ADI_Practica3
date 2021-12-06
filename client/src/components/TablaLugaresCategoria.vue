@@ -11,9 +11,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="place in places_c" :key="place['id']">
-          <td>{{ place['id'] }}</td>
-          <td>{{ place['name'] }}</td>
+        <tr v-for="place in places_c" :key="place.id">
+          <td>{{ place.id }}</td>
+          <td>{{ place.name }}</td>
 
         </tr>
       </tbody>
