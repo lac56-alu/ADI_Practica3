@@ -34,8 +34,7 @@ export default {
   },
   
   methods:{
-
-      async deletePlace(){
+    async deletePlace(){
       try{
         console.log(localStorage)
         var tokenBearer = 'Bearer ' + localStorage.token;
@@ -55,7 +54,6 @@ export default {
         console.error(error);
       }
     },
-
   },
 
   mounted() {

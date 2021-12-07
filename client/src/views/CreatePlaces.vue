@@ -71,17 +71,23 @@
             console.log(this.categories)
         },
         methods: { 
-            createPlaces(){
+            async createPlaces(){
                 this.name = document.getElementById("name").value;
                 this.description = document.getElementById("description").value;
                 this.adress = document.getElementById("adress").value;
                 this.city = document.getElementById("city").value;
                 this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
 
-                var response = createPlace(this.name, this.description, this.adress, this.city, this.categoryID);
-
-                console.log("RESPUESTA POST")
-                console.log(response)
+                try{
+                    var response = await createPlace(this.name, this.description, this.adress, this.city, this.categoryID);
+                    console.log("RESPUESTA POST")
+                    console.log(response)
+                    this.$router.push({path: 'myplaces'});
+                }
+                catch(error){
+                    console.log(error)
+                }
+                    
             }
         },
     };
