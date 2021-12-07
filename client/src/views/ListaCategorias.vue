@@ -28,6 +28,7 @@
 
 
 <script>
+import { getCategory } from '../services/CategoryService';
 import TablaCategorias from '@/components/TablaCategorias.vue';
 export default {
 
@@ -44,16 +45,7 @@ export default {
   methods:{
     async getCategories(){
       try{
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
-        const response = await fetch('http://localhost:3000/api/category', {
-          method: 'GET',
-          headers: { 'Authorization': tokenBearer },
-        });
-
-        var aux = await response.json();
-        console.log(aux);
-        this.categories = aux['respuesta']['data']
+        this.categories = await getCategory()
         console.log(this.categories)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!

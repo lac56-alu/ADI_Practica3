@@ -15,8 +15,8 @@
                             
                             <label for="category" class="text-info">Categoria:  </label><br>
                             <select id="selectCategory" for="selectCategory" name="selectCategory">
-                                <option v-for="cat in this.categories" :key="cat[0]">
-                                    {{ cat[1] }}
+                                <option v-for="cat in this.categories" :key="cat['id']">
+                                    {{ cat['type'] }}
                                 </option>
                             </select>
                             <br><br>
@@ -66,8 +66,9 @@
             }
         },
         async created() {
-            this.categories = await getCategory();
-            //console.log(this.categories)
+            var cat = await getCategory();
+            this.categories = cat
+            console.log(this.categories)
         },
         methods: { 
             createPlaces(){
@@ -76,7 +77,7 @@
                 this.adress = document.getElementById("adress").value;
                 this.city = document.getElementById("city").value;
                 this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
-                
+
                 var response = createPlace(this.name, this.description, this.adress, this.city, this.categoryID);
 
                 console.log("RESPUESTA POST")

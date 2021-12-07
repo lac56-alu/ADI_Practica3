@@ -9,16 +9,16 @@ export async function createPlace(n,d,a,ci,ca) {
             'Access-Control-Request-Headers': '*',
             'Content-Type': 'application/json'
         },
-        body: {
-            name: n,
-            description: d,
-            city: ci,
-            address: a,
-            category_id: ca
-        },
+        body: JSON.stringify({
+                name: n,
+                description: d,
+                city: ci,
+                address: a,
+                category_id: ca
+            }),
     });
-
+    var aux = await response.json()
     console.log("RESPUESTA")
-    console.log(response)
-    return response;
+    console.log(aux)
+    return aux;
 }
