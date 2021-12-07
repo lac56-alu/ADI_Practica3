@@ -27,5 +27,5 @@ export async function getPlacesByCategory(id) {
     headers: { 'Authorization': tokenBearer },
   });
   var resp = await response.json();
-  return resp['respuesta'];
+  return resp;
 }

@@ -6,42 +6,68 @@
 <template>
   <div>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     <div class="container">
   
-        <h1 id="texto">Categorías: </h1> <br>
+      <h1 id="texto"> Categorías: </h1> <br>
+      
+      <div class="row">
+
+        <!-- <table id="table" class="table table-striped table-bordered table-hover">
+          <tabla-categorias :categories="categories"/>
+        </table> -->
         
-        <div class="row">
+        <th v-for="c in categories" :key="c.id">
+          <button v-on:click="mostrarCategoria(c.id)"> {{ c.type }}</button>   
+        </th>
+      
+      </div>
 
-          <table id="table" class="table table-striped table-bordered table-hover">
-            <tabla-categorias :categories="categories"/>
-          </table>
+      <br>
+      <div v-if="visible == true">
+        <button v-on:click="ocultarPlaces"> X </button>
 
+        <div v-if="!places_c.length" class="alert alert-info" role="alert">
+          No existen lugares
         </div>
 
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr v-for="p in places_c" :key="p.id">
+              <td>{{ p.id }}</td>
+              <td>{{ p.name }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
     </div>
 
   </div>
-
+  
 </template>
 
 
 <script>
-import { getCategory } from '../services/CategoryService';
-import TablaCategorias from '@/components/TablaCategorias.vue';
+import { getCategory, getPlacesByCategory } from '../services/CategoryService';
+
 export default {
 
   data(){
     return{
-      categories: []
+      categories: [],
+      places_c: [],
+      visible: false
     }
   },
-
-  components: {
-    TablaCategorias
-  },
-  
   methods:{
     async getCategories(){
       try{
@@ -52,10 +78,34 @@ export default {
         console.error(error);
       }
     },
+    async mostrarCategoria(id){
+      console.log("PRUEBA LUIIIIIIIIIS")
+      console.log(id)
+      
+      console.log("RESPUESTA")
+      await getPlacesByCategory(id).then(
+        resp => {
+          if(resp.respuesta == "Error"){
+            this.places_c = []
+          }
+          else{
+            this.places_c = resp.respuesta
+            console.log(resp)
+          }
+          
+        })
+      console.log("FIINAAAAAAAAAAAAALLL")
+      console.log(this.places_c)
+      
+      this.visible = true;
+    },
+    ocultarPlaces(){
+      this.visible = false;
+    }
   },
 
   mounted() {
-      this.getCategories()
+    this.getCategories()
 
   }
 }
@@ -71,6 +121,21 @@ export default {
 #table{
   width: 80%;
 }
+
+.table{
+  margin: 0 auto;
+  border-spacing: 0;
+}
+
+th {
+  padding: 15px;
+}
+
+td {
+  padding: 15px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
 
 </style>
 

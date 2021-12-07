@@ -9,14 +9,13 @@
 
   <div id="todo">
     <div class="container" style="">
-  
-        <h3 id="texto"> Lugares de la categoría seleccionada: </h3> <br>
-        
-        <div class="row">
-          <table id="table" class="table table-striped table-bordered table-hover">
-            <tabla-places-category :places_c="places_c"/>
-          </table>
-        </div>
+      <h3 id="texto"> Lugares de la categoría seleccionada: </h3> <br>
+      
+      <div class="row">
+        <table id="table" class="table table-striped table-bordered table-hover">
+          <tabla-places-category :places_c="places_c"/>
+        </table>
+      </div>
 
     </div>
   </div>
