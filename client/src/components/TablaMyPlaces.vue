@@ -20,7 +20,7 @@
           <!-- <td> <router-link :to="{name: 'detalles', params: {id: place.id}}">  Ver detalles </router-link> </td> -->
           <td > <button v-on:click="mostrarDetalles(place.id)"> Ver detalles aqui </button> </td> 
           <td> <router-link :to="{name: 'eliminar', params: {id: place.id}}">  Eliminar </router-link>  </td>
-          <td> Modificar </td>
+          <td> <router-link :to="{name: 'modificar', params: {id: place.id}}">  Modificar </router-link> </td>
 
         </tr>
       </tbody>
