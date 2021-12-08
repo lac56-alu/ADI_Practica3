@@ -14,7 +14,7 @@
         <div class="row">
 
           <table id="table" class="table table-striped table-bordered table-hover">
-            <tabla-plans :plans="plans"/>
+            <tabla-planes :plans="plans"/>
           </table>
 
         </div>

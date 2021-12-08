@@ -1,5 +1,5 @@
 <template>
-  <div id="tabla-plans">
+  <div id="tabla-planes">
     <div v-if="!plans.length" class="alert alert-info" role="alert">
       No existen planes
     </div>
