@@ -7,34 +7,19 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-  <div>
-    <h1 id="titulo"> findyourplace.com</h1>
-  </div>
-
-  <div>
-
-    <img id="img1" src="../imagenes/rom.jpg">
-    <img id="img2" src="../imagenes/ply.jpg">
-    
-
-  </div>
-
-  <div id="todo">
     <div class="container" style="">
   
-        <h3 id="texto">Descubre los mejores lugares: </h3> <br>
+        <h3 id="texto">Descubre los mejores planes: </h3> <br>
         
         <div class="row">
 
           <table id="table" class="table table-striped table-bordered table-hover">
-            <tabla-places :places="places"/>
+            <tabla-plans :plans="plans"/>
           </table>
 
         </div>
 
     </div>
-  </div>
-
   </div>
 
 </template>
@@ -43,28 +28,28 @@
     <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"> </script>
 
 <script>
-import TablaPlaces from '@/components/TablaPlaces.vue';
+import TablaPlanes from '@/components/TablaPlanes.vue';
 export default {
 
   data(){
     return{
-      places: []
+      plans: []
     }
   },
 
   components: {
-    TablaPlaces,
+    TablaPlanes,
   },
   
   methods:{
-    async getAllPlaces(){
+    async getAllPlans(){
       try{
-        const response = await fetch('http://localhost:3000/api/place');
-        //console.log(response.json())
+        const response = await fetch('http://localhost:3000/api/plan');
+        
         var aux = await response.json();
-        this.places = aux['respuesta']['data']
+        console.log(aux)
+        this.plans = aux['respuesta']['data']
         console.log(aux['respuesta']['data'])
-        //this.places =  await response.json();
       } catch (error) {
           console.error(error);
       }
@@ -72,37 +57,13 @@ export default {
   },
 
   mounted(){
-    this.getAllPlaces()
+    this.getAllPlans()
   }
 }
 
 </script>
 
 <style scoped>
-
-#img1{
-
-  width: 500px;
-  height: 250px;
-  position: absolute;
-  display: block;
-  top: 200px;
-  left: 150px;
-}
-
-#img2{
-
-  width: 500px;
-  height: 250px;
-  position: absolute;
-  display: block;
-  top: 500px;
-  left: 250px;
-}
-
-#titulo{
-  font-style: oblique;
-}
 
 #todo {
   position: relative;

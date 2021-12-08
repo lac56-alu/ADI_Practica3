@@ -6,6 +6,7 @@
         <li> <router-link to="/categories">Categorías</router-link> </li>
         <li> <router-link to="/about">About</router-link> </li>
         <li> <router-link to="/createPlace">Crear Place</router-link> </li>
+        <li> <router-link to="/plans">Ver planes</router-link> </li>
         <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
         <li style="float:right"> <router-link to="/login">Login</router-link> </li>
         <li style="float:right"> <router-link to="/register">Registro</router-link> </li>

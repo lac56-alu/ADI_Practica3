@@ -62,6 +62,11 @@ const routes = [
     path: '/createPlace',
     name: 'crearPlace',
     component: () => import('../views/CreatePlaces.vue')
+  },
+  {
+    path: '/plans',
+    name: 'plans',
+    component: () => import('../views/ListaPlanes.vue')
   }
 ]
 
