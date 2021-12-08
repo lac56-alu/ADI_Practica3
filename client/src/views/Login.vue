@@ -8,7 +8,10 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
         <h3 class="text-center text-white pt-5">Login</h3>
-        <div class="container">
+        <div class="container" id="transicion-1">
+
+        <transition name="slide-fade">
+
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
@@ -35,6 +38,9 @@
                     </div>
                 </div>
             </div>
+
+        </transition>
+
         </div>        
     </div>
 </template>
@@ -94,6 +100,20 @@
 }
 #login .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+}
+
+/* Las animaciones de entrada y salida pueden usar */
+/* funciones de espera y duración diferentes.      */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 
 </style>
