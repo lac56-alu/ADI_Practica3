@@ -1,3 +1,5 @@
+import authservice from '../services/auth-header';
+
 export async function getCategory() {
   const response = await fetch("http://localhost:3000/api/category");
   var aux = await response.json();
@@ -21,10 +23,9 @@ export function getIdCategory(arrayCat, name){
 }
 
 export async function getPlacesByCategory(id) {
-  var tokenBearer = 'Bearer ' + localStorage.token;
   const response = await fetch('http://localhost:3000/api/places/category/' + id, {
     method: 'GET',
-    headers: { 'Authorization': tokenBearer },
+    headers: { 'Authorization': authservice().Authorization },
   });
   var resp = await response.json();
   return resp;
