@@ -27,8 +27,8 @@
     </table>
     <br> 
 
-    <div v-if="visible == true">     
-        <table id="table" class="table table-striped table-bordered table-hover">
+    <div>     
+        <table v-if="visible == true" id="table" class="table table-striped table-bordered table-hover">
           <tabla-detalles :detalles="detalles"/>
         </table> <br>
     </div>

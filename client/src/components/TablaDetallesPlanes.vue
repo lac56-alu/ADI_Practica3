@@ -1,6 +1,6 @@
 <template>
   <div id="tabla-detalles-planes" name="tabla-detalles-planes">
-    <div v-if="!detalles.length" class="alert alert-info" role="alert">
+    <div v-if="!detallesPlanes.length" class="alert alert-info" role="alert">
       No existe informacion del lugar
     </div>
     <table class="table">
@@ -10,11 +10,11 @@
           <th>Nombre</th>
           <th>Descripcion </th>
           <th>Usuario </th>
-          <th> Lugar </th>
+          <th>Lugar </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="d in detalles" :key="d.id">
+        <tr v-for="d in detallesPlanes" :key="d.id">
           <td>{{ d.id }}</td>
           <td>{{ d.name }}</td>
           <td>{{ d.description }}  </td>
@@ -30,7 +30,7 @@
   export default {
     name: 'tabla-detalles-planes',
     props: {
-       detalles: Array,
+       detallesPlanes: Array,
     },
     
   }

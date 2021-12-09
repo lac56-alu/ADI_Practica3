@@ -2,6 +2,7 @@
   <div id="app">
     <ul>
       <div id="nav">
+        <v-toolbar-items>
         <li> <router-link to="/places">Inicio</router-link> </li>
         <li v-if="currentUser" > <router-link to="/categories">Categorías</router-link> </li>
         <li v-if="currentUser" > <router-link to="/myplaces">Mis lugares</router-link> </li>
@@ -9,10 +10,14 @@
         <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>
-        <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li>
+        <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li> 
+        </v-toolbar-items>
+
       </div>
     </ul>
-    <router-view/>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -111,5 +116,17 @@ li a {
   color: #17a2b8;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .45s;
+}
+ 
+.fade-enter-active {
+  transition-delay: .45s;
+}
+ 
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 
 </style>
