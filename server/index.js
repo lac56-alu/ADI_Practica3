@@ -451,6 +451,7 @@ app.post('/api/user/login', async function(pet, resp){
          }
          else{       
             if(res != "" && res[0].password == pass){
+               var userRegistrado = res;
                var payload = {
                   login: nick,
                   //exp: moment().add(20, 's').valueOf()
@@ -458,7 +459,7 @@ app.post('/api/user/login', async function(pet, resp){
 
                //var token = jwt.encode(payload, secret);
                var token = jwt2.sign(payload, secret, {expiresIn: 2000}) // Tiempo para que expire el token: 20 segundos 
-               resp.status(201).send({mensaje: "Usuario logeado correctamente.", token: token})
+               resp.status(201).send({mensaje: "Usuario logeado correctamente.", user: userRegistrado, token: token})
             }else{
                resp.status(404).send({mensaje: "Usuario no encontrado"})
                
