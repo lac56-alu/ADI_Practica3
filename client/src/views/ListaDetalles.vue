@@ -16,12 +16,12 @@
 
           <table id="table" class="table table-striped table-bordered table-hover">
             <tabla-detalles :detalles="detalles"/>
-          </table>
-
+          </table> <br>
         </div>
 
     </div>
 
+        <button> <router-link to="/myplaces">Volver</router-link> </button>
   </div>
 
 </template>

@@ -14,7 +14,7 @@
 
         <div class="row">
 
-          <table id="table" class="table table-striped table-bordered table-hover">
+          <table id="table" class="table">
             <tabla-my-places :myplaces="myplaces"/>
           </table>
 

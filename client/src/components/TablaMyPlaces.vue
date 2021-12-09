@@ -17,22 +17,71 @@
         <tr v-for="place in myplaces" :key="place.id">
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
-          <td> <router-link :to="{name: 'detalles', params: {id: place.id}}">  Ver detalles </router-link> </td>
-          <td> <router-link :to="{name: 'eliminar', params: {id: place.id}}">  Eliminar </router-link>  </td>
-          <td> Modificar </td>
+          <!-- <td> <router-link :to="{name: 'detalles', params: {id: place.id}}">  Ver detalles </router-link> </td> -->
+          <td > <button v-on:click="mostrarDetalles(place.id)"> Ver detalles aqui </button> </td> 
+          <td> <button> <router-link :to="{name: 'eliminar', params: {id: place.id}}" style="color: black">  Eliminar </router-link>  </button> </td>
+          <td> <button> <router-link :to="{name: 'modificar', params: {id: place.id}}" style="color: black">  Modificar </router-link> </button> </td>
 
         </tr>
       </tbody>
     </table>
+    <br> 
+
+    <div v-if="visible == true">     
+        <table id="table" class="table table-striped table-bordered table-hover">
+          <tabla-detalles :detalles="detalles"/>
+        </table> <br>
+    </div>
+
+
   </div>
 </template>
 
 <script>
+
+import TablaDetalles from '@/components/TablaDetalles.vue';
   export default {
     name: 'tabla-my-places',
     props: {
        myplaces: Array,
     },
+    data(){
+        return{
+          visible: false,
+          detalles: []
+        }
+  },
+    components: {
+    TablaDetalles
+  },
+    methods: {
+      async mostrarDetalles(id){
+      try{
+        console.log(localStorage)
+        var tokenBearer = 'Bearer ' + localStorage.token;
+        console.log("AQUIIII:")
+        console.log(id)
+        var idPlace = id
+        const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
+          method: 'GET',
+          headers: { 'Authorization': tokenBearer },
+        });
+
+        var aux = await response.json();
+        console.log(aux);
+        this.detalles = aux['respuesta']
+        console.log(this.myplaces)
+        this.visible = true;
+        console.log(this.visible)
+      }catch (error)  {
+        //En ese caso, no mostrar la vista!!!!!!!!!!!
+        console.error(error);
+      }
+    }
+    },
+    mounted() {
+      this.mostrarDetalles();
+    }
   }
 </script>
 

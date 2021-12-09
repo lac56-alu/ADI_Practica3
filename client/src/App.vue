@@ -3,9 +3,10 @@
     <ul>
       <div id="nav">
         <li> <router-link to="/places">Inicio</router-link> </li>
-        <li> <router-link to="/categories">Categorías</router-link> </li>
-        <li> <router-link to="/about">About</router-link> </li>
-        <li> <router-link to="/createPlace">Crear Place</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/categories">Categorías</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/myplaces">Mis lugares</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/createPlace">Crear Lugar</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li>

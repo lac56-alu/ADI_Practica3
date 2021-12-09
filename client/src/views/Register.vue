@@ -74,7 +74,7 @@ export default {
                     }),
                 headers: { 'Content-type': 'application/json; charset=UTF-8' },
             });
-            //this.$router.push('/login');
+            this.$router.push({path: 'login'});
             
         } catch (error) {
             console.log(error);

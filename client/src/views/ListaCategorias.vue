@@ -19,24 +19,25 @@
         </table> -->
         
         <th v-for="c in categories" :key="c.id">
-          <button v-on:click="mostrarCategoria(c.id)"> {{ c.type }}</button>   
+          <button class="btn btn-info btn-md" v-on:click="mostrarCategoria(c.id)"> {{ c.type }}</button>   
         </th>
       
       </div>
 
       <br>
       <div v-if="visible == true">
-        <button v-on:click="ocultarPlaces"> X </button>
+        <button class="btn btn-info btn-md" id="botonX" v-on:click="ocultarPlaces"> X </button> <br>
 
-        <div v-if="!places_c.length" class="alert alert-info" role="alert">
-          No existen lugares
-        </div>
+        <br> <div id="no_existen" v-if="!places_c.length" class="alert alert-info" role="alert">
+          No existen lugares de esta categoría
+        </div> <br>
 
         <table class="table">
           <thead>
             <tr>
               <th>ID</th>
               <th>Nombre</th>
+              <th> </th>
             </tr>
           </thead>
           
@@ -44,10 +45,18 @@
             <tr v-for="p in places_c" :key="p.id">
               <td>{{ p.id }}</td>
               <td>{{ p.name }}</td>
+              <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles aqui </button> </td> 
             </tr>
           </tbody>
 
-        </table>
+        </table> <br>
+
+        <div v-if="visible == true">     
+        <table id="table" class="table table-striped table-bordered table-hover">
+          <tabla-detalles :detalles="detalles"/>
+        </table> <br>
+    </div>
+
       </div>
     </div>
 
@@ -57,17 +66,26 @@
 
 
 <script>
+
+import TablaDetalles from '@/components/TablaDetalles.vue';
 import { getCategory, getPlacesByCategory } from '../services/CategoryService';
+import authservice from '../services/auth-header';
 
 export default {
+  
 
   data(){
     return{
       categories: [],
       places_c: [],
-      visible: false
+      visible: false,
+      detalles: []
     }
   },
+  components: {
+    TablaDetalles
+  },
+
   methods:{
     async getCategories(){
       try{
@@ -101,11 +119,35 @@ export default {
     },
     ocultarPlaces(){
       this.visible = false;
+    },
+    async mostrarDetalles(id){
+      try{
+        console.log(localStorage)
+        //var tokenBearer = 'Bearer ' + localStorage.token;
+        console.log("AQUIIII:")
+        console.log(id)
+        var idPlace = id
+        const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
+          method: 'GET',
+          headers: { 'Authorization': authservice().Authorization },
+        });
+
+        var aux = await response.json();
+        console.log(aux);
+        this.detalles = aux['respuesta']
+        console.log(this.myplaces)
+        this.visible = true;
+        console.log(this.visible)
+      }catch (error)  {
+        //En ese caso, no mostrar la vista!!!!!!!!!!!
+        console.error(error);
+      }
     }
   },
 
   mounted() {
-    this.getCategories()
+    this.getCategories(),
+    this.mostrarDetalles();
 
   }
 }
@@ -113,6 +155,15 @@ export default {
 </script>
 
 <style scoped>
+
+#no_existen{
+  background-color: rgb(248, 205, 201);
+  border-color: rgb(248, 205, 201);
+}
+
+#botonX{
+  background-color: rgb(3, 104, 104);
+}
 
 #texto{
   color: #17a2b8;
