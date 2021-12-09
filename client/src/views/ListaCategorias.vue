@@ -69,6 +69,7 @@
 
 import TablaDetalles from '@/components/TablaDetalles.vue';
 import { getCategory, getPlacesByCategory } from '../services/CategoryService';
+import authservice from '../services/auth-header';
 
 export default {
   
@@ -122,13 +123,13 @@ export default {
     async mostrarDetalles(id){
       try{
         console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
+        //var tokenBearer = 'Bearer ' + localStorage.token;
         console.log("AQUIIII:")
         console.log(id)
         var idPlace = id
         const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
           method: 'GET',
-          headers: { 'Authorization': tokenBearer },
+          headers: { 'Authorization': authservice().Authorization },
         });
 
         var aux = await response.json();

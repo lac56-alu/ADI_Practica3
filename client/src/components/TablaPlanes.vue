@@ -13,7 +13,7 @@
       <tbody>
         <tr v-for="p in plans" :key="p.id">
           <td>{{ p.name }}</td>
-          <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles aqui </button> </td> 
+          <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles </button> </td> 
 
         </tr>
       </tbody>
