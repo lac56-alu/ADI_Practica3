@@ -247,6 +247,34 @@ app.post('/api/place', checkJWT, async function(pet, resp){
 
 });
 
+// POST API/pLAN (crea un elemetno de la coleccion plan, siempre que los parametros del body esten bien)
+   app.post('/api/plan', checkJWT, async function(pet, resp){
+
+      const nuevoElemento = pet.body; 
+   
+      var token = getTokenFromAuthHeader(pet)
+      var decoded = jwt.decode(token, secret);
+   
+      knex.select().table('user').where('userName', decoded.login).asCallback(function(error, res){
+         if(error){
+            resp.status(500).send({error: "Error interno"})
+         }else{
+            nuevoElemento.user_id = res[0].id;
+            knex.insert(nuevoElemento).into('plan').asCallback(function(error, res){
+               if(error){  
+                  resp.status(404).send({error: "La colección introducida no existe"})
+               }
+               else{
+                  console.log(res)
+                  resp.status(201).send({"respuesta": "Plan creado correctamente"})
+                  
+               } 
+            })
+         } 
+      })
+   
+   });
+
 
 // DELETE API/PLACE/ID (elimina el lugar con el id indicado de la tabla indicada)
    // para poder eliminar un lugar, el usuario deberá estar loggeado

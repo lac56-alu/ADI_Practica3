@@ -45,7 +45,7 @@ import TablaDetalles from '@/components/TablaDetalles.vue';
     props: {
        myplaces: Array,
     },
-      data(){
+    data(){
         return{
           visible: false,
           detalles: []
