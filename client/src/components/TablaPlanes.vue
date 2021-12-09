@@ -19,7 +19,7 @@
       </tbody>
     </table> <br>
 
-        <div v-if="visible == true">     
+    <div v-if="this.visible == true">     
         <table id="table" class="table table-striped table-bordered table-hover">
           <tabla-detalles-planes :detalles="detalles"/>
         </table> <br>
@@ -75,6 +75,9 @@ import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
     methods: {
       async mostrarDetalles(id){
       try{
+        console.log("VISIBLE:")
+        console.log(this.visible)
+        this.visible = true;
         console.log(localStorage)
         var tokenBearer = 'Bearer ' + localStorage.token;
         console.log("AQUIIII:")
@@ -88,7 +91,7 @@ import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
         var aux = await response.json();
         console.log(aux);
         this.detalles = aux['respuesta']
-        this.visible = true;
+        
         console.log(this.visible)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
