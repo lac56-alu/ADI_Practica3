@@ -19,18 +19,18 @@
         </table> -->
         
         <th v-for="c in categories" :key="c.id">
-          <button v-on:click="mostrarCategoria(c.id)"> {{ c.type }}</button>   
+          <button class="btn btn-info btn-md" v-on:click="mostrarCategoria(c.id)"> {{ c.type }}</button>   
         </th>
       
       </div>
 
       <br>
       <div v-if="visible == true">
-        <button v-on:click="ocultarPlaces"> X </button>
+        <button class="btn btn-info btn-md" id="botonX" v-on:click="ocultarPlaces"> X </button> <br>
 
-        <div v-if="!places_c.length" class="alert alert-info" role="alert">
-          No existen lugares
-        </div>
+        <br> <div id="no_existen" v-if="!places_c.length" class="alert alert-info" role="alert">
+          No existen lugares de esta categoría
+        </div> <br>
 
         <table class="table">
           <thead>
@@ -154,6 +154,15 @@ export default {
 </script>
 
 <style scoped>
+
+#no_existen{
+  background-color: rgb(248, 205, 201);
+  border-color: rgb(248, 205, 201);
+}
+
+#botonX{
+  background-color: rgb(3, 104, 104);
+}
 
 #texto{
   color: #17a2b8;
