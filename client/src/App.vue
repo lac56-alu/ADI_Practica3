@@ -6,9 +6,9 @@
         <li> <router-link to="/categories">Categorías</router-link> </li>
         <li> <router-link to="/about">About</router-link> </li>
         <li> <router-link to="/createPlace">Crear Place</router-link> </li>
-        <li style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
-        <li style="float:right"> <router-link to="/login">Login</router-link> </li>
-        <li style="float:right"> <router-link to="/register">Registro</router-link> </li>
+        <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
+        <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>
+        <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li>
       </div>
     </ul>
     <router-view/>
@@ -16,13 +16,17 @@
 </template>
 
 <script>
-import { logOut } from './services/UserService';
 export default {
   data(){
     return{
       registrado: this.comprobarRegistro(),
       usuario: localStorage.userName,
       log: localStorage.registrado
+    }
+  },
+  computed: {
+    currentUser(){
+      return this.$store.state.auth.user;
     }
   },
   created() {
@@ -44,7 +48,7 @@ export default {
   },
   methods: {       
     logoutUser() {
-      logOut();
+      this.$store.dispatch('auth/logout');
       this.$router.push('/places');
     },
     comprobarRegistro(){
