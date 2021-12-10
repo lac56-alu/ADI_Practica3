@@ -22,20 +22,20 @@
                             <br><br>
 
                             <label for="name" class="text-info">Nombre:  </label>
-                            <input class="form-control" type="text" id="name" name="name" v-model="name" required placeholder="Nombre">
+                            <input id="nameChange" class="form-control" type="text" name="name" required v-bind:value="this.detalles[0].name">
                             <br>
 
                             <label for="description" class="text-info">Descripcion:  </label>
-                            <textarea class="form-control" type="text" rows="3" id="description" 
-                            name="description" v-model="description" required placeholder="Descripcion breve"></textarea>
+                            <textarea class="form-control" type="text" rows="3" id="descriptionChange" 
+                            name="description" required v-bind:value="this.detalles[0].description"></textarea>
                             <br>
                         
                             <label for="address" class="text-info">Dirección:  </label>
-                            <input class="form-control" type="text" id="address" name="address" v-model="address" required placeholder="Dirección">
+                            <input class="form-control" type="text" id="addressChange" name="address" required v-bind:value="this.detalles[0].address">
                             <br>
 
                             <label for="city" class="text-info">Ciudad:  </label>
-                            <input class="form-control" type="text" id="city" name="city" v-model="city" required placeholder="Ciudad">
+                            <input class="form-control" type="text" id="cityChange" name="city" required v-bind:value="this.detalles[0].city">
                             <br>
                             
                             
@@ -50,98 +50,87 @@
 </template>
 
 <script>
-
-
 import { getCategory, getIdCategory } from '../services/CategoryService';
+import authservice from '../services/auth-header';
 
 export default {
 
   data(){
     return{
-        detalles: [],
-        categories: '',
-        userID: '',
-        name: '',
-        description: '',
-        address: '',
-        city: '',
-        categoryID: '',
+      detalles: [],
+      categories: '',
+      userID: '',
+      name: '',
+      description: '',
+      address: '',
+      city: '',
+      categoryID: '',
     }
   },
-
-    async created() {
+  async created() {
+    this.getDetalles();
     var cat = await getCategory();
     this.categories = cat
-    console.log(this.categories)
+    console.log(this.categories);
+  },
+
+  methods:{
+    async updatePlace(){
+      try{
+        this.name = document.getElementById("nameChange").value;
+        this.description = document.getElementById("descriptionChange").value;
+        this.address = document.getElementById("addressChange").value;
+        this.city = document.getElementById("cityChange").value;
+        this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
+        var idPlace = this.$route.params.id
+
+        const response = await fetch('http://localhost:3000/api/modify/place/' + idPlace, {
+          method: 'PUT',
+          headers: { 
+            'Authorization': authservice().Authorization, 
+            'Access-Control-Request-Headers': '*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              name: this.name,
+              description: this.description,
+              city: this.city,
+              address: this.address,
+              category_id: this.categoryID
+          }),
+        });
+        
+        console.log(response)
+        var aux = await response.json();
+        
+        console.log("REPUESTAAAAAAA")
+        console.log(aux)
+        this.$router.push("/myplaces");
+
+      }catch (error)  {
+        //En ese caso, no mostrar la vista!!!!!!!!!!!
+        console.error(error);
+      }
     },
-
-
     async getDetalles(){
       try{
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
         console.log("AQUIIII:")
         var idPlace = this.$route.params.id
         const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
           method: 'GET',
-          headers: { 'Authorization': tokenBearer },
+          headers: { 'Authorization': authservice().Authorization },
         });
 
         var aux = await response.json();
         console.log(aux);
         this.detalles = aux['respuesta']
+        console.log("QUIEEEEEEEEEEEEEEEROOOOOOOOOOO ESTOOOOOOOOOOOOOOOOOOOOO")
         console.log(this.detalles)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
-    },
-  
-  methods:{
-
-
-    async updatePlace(){
-      try{
-          console.log(this.detalles)
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
-        var idPlace = parseInt(this.$route.params.id);
-        this.name = document.getElementById("name").value;
-        this.description = document.getElementById("description").value;
-        this.address = document.getElementById("address").value;
-        this.city = document.getElementById("city").value;
-        this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
-        const response = await fetch('http://localhost:3000/api/modify/place/' + idPlace, {
-          method: 'PUT',
-          headers: { 
-            'Authorization': tokenBearer, 
-            'Access-Control-Request-Headers': '*',
-            'Content-Type': 'application/json'
-        },
-          body: JSON.stringify({
-                id: idPlace,
-                name: this.name,
-                description: this.description,
-                city: this.city,
-                address: this.address,
-                category_id: this.categoryID
-            }),
-        });
-        var aux = await response.json();
-        this.$router.push({path: 'myplaces'});
-
-
-      }catch (error)  {
-        //En ese caso, no mostrar la vista!!!!!!!!!!!
-        console.error(error);
-      }
-    },
-  },
-
-  mounted() {
-      //this.getDetalles(),
-      this.updatePlace()
-
+    }   
   }
 }
 

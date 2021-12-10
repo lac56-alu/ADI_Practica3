@@ -25,12 +25,18 @@
         </tr>
       </tbody>
     </table>
-    <br> 
-
-    <div v-if="visible == true">     
-        <table id="table" class="table table-striped table-bordered table-hover">
-          <tabla-detalles :detalles="detalles"/>
-        </table> <br>
+    <br>
+    {{ this.visibleDetalles }}
+    
+    <div v-if="visibleDetalles">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body" v-for="d in detalles" :key="d.id">
+          <h5 class="card-title">{{ d.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ d.city }} </h6>
+          <p class="card-text"> {{ d.description }} </p>
+          <a href="#" class="card-link"> {{ d.address }} </a>
+        </div>
+      </div>
     </div>
 
 
@@ -39,23 +45,19 @@
 
 <script>
 
-import TablaDetalles from '@/components/TablaDetalles.vue';
-  export default {
-    name: 'tabla-my-places',
-    props: {
-       myplaces: Array,
-    },
-    data(){
-        return{
-          visible: false,
-          detalles: []
-        }
+export default {
+  name: 'tabla-my-places',
+  props: {
+    myplaces: Array,
   },
-    components: {
-    TablaDetalles
+  data(){
+    return{
+      visibleDetalles: false,
+      detalles: []
+    }
   },
-    methods: {
-      async mostrarDetalles(id){
+  methods: {
+    async mostrarDetalles(id){
       try{
         console.log(localStorage)
         var tokenBearer = 'Bearer ' + localStorage.token;
@@ -71,18 +73,26 @@ import TablaDetalles from '@/components/TablaDetalles.vue';
         console.log(aux);
         this.detalles = aux['respuesta']
         console.log(this.myplaces)
-        this.visible = true;
+        this.toggleVisible();
         console.log(this.visible)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
-    }
     },
-    mounted() {
-      this.mostrarDetalles();
+    toggleVisible(){
+      if(this.visibleDetalles == true){
+        this.visibleDetalles = false;
+      }
+      else{
+        this.visibleDetalles = true;
+      }
     }
+  },
+  mounted() {
+    this.mostrarDetalles();
   }
+}
 </script>
 
 <style>
