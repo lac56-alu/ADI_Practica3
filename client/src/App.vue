@@ -57,7 +57,7 @@ export default {
   methods: {       
     logoutUser() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/inicio');
+      this.$router.push('/home');
     },
     comprobarRegistro(){
       
