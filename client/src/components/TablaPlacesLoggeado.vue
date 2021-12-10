@@ -9,8 +9,6 @@
           <th>Id</th>
           <th>Nombre</th>
           <td> </td>
-          <td> </td>
-          <td> </td>
         </tr>
       </thead>
       <tbody>
@@ -18,8 +16,6 @@
           <td>{{ place.id }}</td>
           <td>{{ place.name }}</td>
           <td > <button v-on:click="mostrarDetalles(place.id)"> Ver detalles aqui </button> </td> 
-          <td> <button> <router-link :to="{name: 'eliminar', params: {id: place.id}}" style="color: black">  Eliminar </router-link>  </button> </td>
-          <td> <button> <router-link :to="{name: 'modificar', params: {id: place.id}}" style="color: black">  Modificar </router-link> </button> </td>
 
         </tr>
       </tbody>
