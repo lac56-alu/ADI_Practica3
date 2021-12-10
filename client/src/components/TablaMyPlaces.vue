@@ -32,30 +32,27 @@
           <tabla-detalles :detalles="detalles"/>
         </table> <br>
     </div>
-
-
   </div>
 </template>
 
 <script>
 
-import TablaDetalles from '@/components/TablaDetalles.vue';
-  export default {
-    name: 'tabla-my-places',
-    props: {
-       myplaces: Array,
-    },
-    data(){
-        return{
-          visible: false,
-          detalles: []
-        }
+export default {
+  name: 'tabla-my-places',
+  props: {
+    myplaces: Array,
   },
-    components: {
-    TablaDetalles
+  data(){
+    return{
+      detalles: [],
+      visibleDetalles: '',
+    }
   },
-    methods: {
-      async mostrarDetalles(id){
+  created(){
+    this.visibleDetalles = false;
+  },
+  methods: {
+    async mostrarDetalles(id){
       try{
         console.log(localStorage)
         var tokenBearer = 'Bearer ' + localStorage.token;
@@ -71,18 +68,18 @@ import TablaDetalles from '@/components/TablaDetalles.vue';
         console.log(aux);
         this.detalles = aux['respuesta']
         console.log(this.myplaces)
-        this.visible = true;
+        this.visibleDetalles = true;
         console.log(this.visible)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
     }
-    },
-    mounted() {
-      this.mostrarDetalles();
-    }
+  },
+  mounted() {
+    this.mostrarDetalles();
   }
+}
 </script>
 
 <style>

@@ -35,8 +35,7 @@ export default {
 
   data(){
     return{
-      myplaces: [],
-      comprobar: false
+      myplaces: []
     }
   },
 
