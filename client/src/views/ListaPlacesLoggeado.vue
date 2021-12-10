@@ -13,7 +13,7 @@
         <h1 id="texto">Lista de todos los lugares:</h1> <br>
 
         <table>
-
+          <td>
                   <div class="row">
 
                     <table id="table" class="table">
@@ -36,7 +36,8 @@
                     </table>
 
                   </div>
-
+          </td>
+          <td>
                   <div>     
                     <table v-if="visibleDetalles == true" id="table" class="table table-striped table-bordered table-hover">
                         <thead>
@@ -59,7 +60,7 @@
                         </tbody>
                     </table> <br>
                   </div>
-                  
+          </td>
         </table>
 
     </div>
