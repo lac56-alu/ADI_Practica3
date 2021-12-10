@@ -307,7 +307,7 @@ app.delete('/api/place/:id', checkJWT, async function(pet, resp){
                            resp.status(500).send({error: "Error interno"})
                         }
                         else{   
-                           resp.status(204)
+                           resp.status(204).send({"respuesta": "Borrado correctamente"})
                         }
                      })
                   }else{
