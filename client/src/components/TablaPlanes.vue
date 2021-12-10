@@ -19,9 +19,9 @@
       </tbody>
     </table> <br>
 
-    <div v-if="this.visible == true">     
+    <div v-if="this.visiblePlan">     
         <table id="table" class="table table-striped table-bordered table-hover">
-          <tabla-detalles-planes :detalles="detalles"/>
+          <tabla-detalles-planes :detallesPlanes="detallesPlanes"/>
         </table> <br>
     </div>
 
@@ -56,6 +56,7 @@ table thead {
 </style>
 
 <script>
+import authservice from '../services/auth-header';
 
 import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
   export default {
@@ -65,8 +66,8 @@ import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
     },
     data(){
         return{
-          visible: false,
-          detalles: []
+          visiblePlan: false,
+          detallesPlanes: []
         }
   },
     components: {
@@ -76,23 +77,23 @@ import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
       async mostrarDetalles(id){
       try{
         console.log("VISIBLE:")
-        console.log(this.visible)
-        this.visible = true;
+        console.log(this.visiblePlan)
+        this.visiblePlan = true;
         console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
+        //var tokenBearer = 'Bearer ' + localStorage.token;
         console.log("AQUIIII:")
         console.log(id)
         var idPlan = id
         const response = await fetch('http://localhost:3000/api/plan/' + idPlan, {
           method: 'GET',
-          headers: { 'Authorization': tokenBearer },
+          headers: { 'Authorization': authservice().Authorization },
         });
 
         var aux = await response.json();
         console.log(aux);
-        this.detalles = aux['respuesta']
+        this.detallesPlanes = aux['respuesta']
         
-        console.log(this.visible)
+        console.log(this.visiblePlan)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);

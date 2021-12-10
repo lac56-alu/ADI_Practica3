@@ -29,9 +29,14 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/places',
+    path: '/home',
     name: 'ListaPlaces',
     component: () => import('../views/ListaPlaces.vue')
+  },
+  {
+    path: '/places',
+    name: 'ListaPlaces',
+    component: () => import('../views/ListaPlacesLoggeado.vue')
   },
   {
     path: '/myplaces',
@@ -67,6 +72,16 @@ const routes = [
     path: '/plans',
     name: 'plans',
     component: () => import('../views/ListaPlanes.vue')
+  },
+  {
+    path: '/myplans',
+    name: 'ListaMisPlanes',
+    component: () => import('../views/ListaMisPlanes.vue')
+  },
+  {
+    path: '/eliminarPlan/:id',
+    name: 'eliminarPlan',
+    component: () => import('../views/EliminarPlan.vue')
   },
   {
     path: '/modificar/:id',

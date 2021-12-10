@@ -10,12 +10,12 @@
 
     <div class="container">
   
-        <h1 id="texto">Lista de lugares creados por mi:</h1> <br>
+        <h1 id="texto">Planes creados por mi:</h1> <br>
 
         <div class="row">
 
           <table id="table" class="table">
-            <tabla-my-places :myplaces="myplaces"/>
+            <tabla-my-plans :myplans="myplans"/>
           </table>
 
         </div>
@@ -28,38 +28,35 @@
 
 
 <script>
-import TablaMyPlaces from '@/components/TablaMyPlaces.vue';
+import TablaMyPlans from '@/components/TablaMyPlans.vue';
 import authservice from '../services/auth-header';
 
 export default {
 
   data(){
     return{
-      myplaces: []
+      myplans: []
     }
   },
 
   components: {
-    TablaMyPlaces
+    TablaMyPlans
   },
   
   methods:{
-    async getMyPlaces(){
+    async getMyPlans(){
       try{
-        /*console.log(localStorage)
-        var u = JSON.parse(localStorage.getItem('user'));
         console.log("MISSSS PLANEEESSS")
-        console.log(u.token)
-        var tokenBearer = 'Bearer ' + u.token;*/
-        const response = await fetch('http://localhost:3000/api/mi/place', {
+        console.log(authservice().Authorization)
+        const response = await fetch('http://localhost:3000/api/mi/plan', {
           method: 'GET',
           headers: { 'Authorization': authservice().Authorization },
         });
 
         var aux = await response.json();
         console.log(aux);
-        this.myplaces = aux['respuesta']
-        console.log(this.myplaces)
+        this.myplans = aux['respuesta']
+        console.log(this.myplans)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
@@ -68,7 +65,7 @@ export default {
   },
 
   mounted() {
-    this.getMyPlaces()
+    this.getMyPlans()
   }
 }
 

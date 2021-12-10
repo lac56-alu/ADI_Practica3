@@ -137,6 +137,44 @@ app.get('/api/mi/place/', checkJWT, async function(pet, resp){
 
 
 
+// GET API/MI/PLAN (devuelve todos los datos de una coleccion/tabla creados por el usuario loggeado)
+app.get('/api/mi/plan/', checkJWT, async function(pet, resp){
+ 
+      var token = getTokenFromAuthHeader(pet)
+      var decoded = jwt.decode(token, secret);
+   
+      var consult = await knex.select().table('user').where('userName', decoded.login).asCallback(function(error, res){
+         if(error){
+            resp.status(500).send({error: "Error interno"})
+         }else{
+            var aux_id = res[0].id; //id del usuario que ha iniciado sesion
+   
+            knex.select().table('plan').where('user_id', aux_id).asCallback(function(error, res){ //buscamos lugares creados por el usuario loggeado
+               if(error){
+                  resp.status(500).send({error: "Error interno"})
+               }
+               else{   
+                  if(res == 0){
+                     resp.status(404).send({"respuesta": "Error"})
+                     
+                  }else{
+   
+                  
+                        console.log(res)
+                        resp.status(200).send({"respuesta": res})
+                              
+                        
+                       
+                  }
+               }
+            })
+         }    
+      })
+   });
+
+
+
+
 // GET API/COLECCION (devuelve todos los datos de una coleccion/tabla)
    // para devolver toda la colección de cualquier tabla, no hace falta estar loggeado
    // este método es genérico, devuelve cualquier colección de la base de dato
@@ -319,6 +357,52 @@ app.delete('/api/place/:id', checkJWT, async function(pet, resp){
       } 
    })
 });
+
+
+
+// DELETE API/PLAN/ID (elimina el plan con el id indicado de la tabla indicada)
+   app.delete('/api/plan/:id', checkJWT, async function(pet, resp){
+
+      var token = getTokenFromAuthHeader(pet)
+      var decoded = jwt.decode(token, secret);
+   
+      knex.select().table('user').where('userName', decoded.login).asCallback(function(error, res){
+         if(error){
+            resp.status(500).send({error: "Error interno"})
+         }else{
+            var aux_id = res[0].id; //id del usuario que ha iniciado sesion
+   
+            knex.select().table('plan').where('id', pet.params.id).asCallback(function(error, res){
+               if(error){
+                  resp.status(500).send({error: "Error interno"})
+               }
+               else{   
+                  if(res == 0){
+                     resp.status(404).send({"respuesta": "El id introducido no se encuentra en la base de datos"})
+                     
+                  }else{
+   
+                     if(aux_id == res[0].user_id){
+   
+                        knex.select().table('plan').where('id', pet.params.id).delete().asCallback(function(error, res){
+                           if(error){
+                              resp.status(500).send({error: "Error interno"})
+                           }
+                           else{   
+                              resp.status(204)
+                           }
+                        })
+                     }else{
+                        resp.status(401).send({"respuesta": "No puede eliminar el plan indicado, ya que no ha sido creado por usted"})
+                     }
+                  }
+               }
+            })    
+         } 
+      })
+   });
+   
+
 
 
 // DELETE API/USER/ID (elimina el lugar con el id indicado de la tabla indicada)

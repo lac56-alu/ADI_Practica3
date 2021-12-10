@@ -22,7 +22,7 @@
   <div id="todo">
     <div class="container" style="">
   
-        <h3 id="texto">Descubre los mejores lugares: </h3> <br>
+        <h3 id="texto">Descubre los mejores lugares: </h3> 
         
         <div class="row">
 

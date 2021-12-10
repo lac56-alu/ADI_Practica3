@@ -2,17 +2,24 @@
   <div id="app">
     <ul>
       <div id="nav">
-        <li> <router-link to="/places">Inicio</router-link> </li>
+        <v-toolbar-items>
+        <li> <router-link to="/home">Inicio</router-link> </li>
         <li v-if="currentUser" > <router-link to="/categories">Categorías</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/myplaces">Mis lugares</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/places">Ver todos los lugares</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/myplaces">Ver mis lugares</router-link> </li>
         <li v-if="currentUser" > <router-link to="/createPlace">Crear Lugar</router-link> </li>
         <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/myplans">Ver mis planes</router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>
-        <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li>
+        <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li> 
+        </v-toolbar-items>
+
       </div>
     </ul>
-    <router-view/>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -50,7 +57,7 @@ export default {
   methods: {       
     logoutUser() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/places');
+      this.$router.push('/home');
     },
     comprobarRegistro(){
       
@@ -111,5 +118,17 @@ li a {
   color: #17a2b8;
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .45s;
+}
+ 
+.fade-enter-active {
+  transition-delay: .45s;
+}
+ 
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 
 </style>
