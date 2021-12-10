@@ -6,7 +6,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Nombre</th>
           <th>Descripcion </th>
           <th>Ciudad </th>
@@ -16,7 +15,6 @@
       </thead>
       <tbody>
         <tr v-for="d in detalles" :key="d.id">
-          <td>{{ d.id }}</td>
           <td>{{ d.name }}</td>
           <td>{{ d.description }}  </td>
           <td> {{ d.city }}</td>

@@ -25,37 +25,47 @@
       </div>
 
       <br>
-      <div v-if="visible == true">
-        <button class="btn btn-info btn-md" id="botonX" v-on:click="ocultarPlaces"> X </button> <br>
+      <div v-if="visibleCategorias == true">
+        <div style="text-align: right;"> <button class="btn btn-info btn-md" id="botonX" v-on:click="ocultarPlaces"> Ocultar Lugares </button> </div>
 
-        <br> <div id="no_existen" v-if="!places_c.length" class="alert alert-info" role="alert">
+        <br> 
+        <div id="no_existen" v-if="!mostrarPlaces" class="alert alert-info" role="alert">
           No existen lugares de esta categoría
-        </div> <br>
+        </div> 
+        <br>
+        
+        <div v-if="mostrarPlaces">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th> </th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr v-for="p in places_c" :key="p.id">
+                <td>{{ p.name }}</td>
+                <td > <button v-on:click="showDetalles(p.id)"> Ver detalles aqui </button> </td> 
+              </tr>
+            </tbody>
+          </table>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th> </th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            <tr v-for="p in places_c" :key="p.id">
-              <td>{{ p.id }}</td>
-              <td>{{ p.name }}</td>
-              <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles aqui </button> </td> 
-            </tr>
-          </tbody>
+          <br>
 
-        </table> <br>
+          <div v-if="mostrarDetalles"> 
+            <div style="text-align: right;"> <button class="btn btn-info btn-md" id="botonX" v-on:click="ocultarDetalles"> Ocultar Detalles </button> </div>
 
-        <div v-if="visible == true">     
-        <table id="table" class="table table-striped table-bordered table-hover">
-          <tabla-detalles :detalles="detalles"/>
-        </table> <br>
-    </div>
+            <br>
+
+            <table id="table" class="table table-striped table-bordered table-hover">
+              <tabla-detalles :detalles="detalles"/>
+            </table>
+          </div>
+          <br>
+
+
+        </div>
 
       </div>
     </div>
@@ -72,31 +82,34 @@ import { getCategory, getPlacesByCategory } from '../services/CategoryService';
 import authservice from '../services/auth-header';
 
 export default {
-  
-
   data(){
     return{
       categories: [],
       places_c: [],
-      visible: false,
+      visibleCategorias: false,
+      mostrarPlaces: false,
+      mostrarDetalles: false,
       detalles: []
     }
   },
   components: {
     TablaDetalles
   },
-
+  async created(){
+    try{
+      this.categories = await getCategory()
+      console.log(this.categories)
+    }catch (error)  {
+      //En ese caso, no mostrar la vista!!!!!!!!!!!
+      console.error(error);
+    }
+  },
   methods:{
-    async getCategories(){
-      try{
-        this.categories = await getCategory()
-        console.log(this.categories)
-      }catch (error)  {
-        //En ese caso, no mostrar la vista!!!!!!!!!!!
-        console.error(error);
-      }
-    },
     async mostrarCategoria(id){
+      if(this.mostrarPlaces){
+        this.ocultarPlaces();
+      }
+
       console.log("PRUEBA LUIIIIIIIIIS")
       console.log(id)
       
@@ -110,22 +123,24 @@ export default {
             this.places_c = resp.respuesta
             console.log(resp)
           }
-          
-        })
+      })
       console.log("FIINAAAAAAAAAAAAALLL")
       console.log(this.places_c)
-      
-      this.visible = true;
+      if(this.places_c.length > 0){
+        this.mostrarPlaces = true
+      }
+
+      this.mostrarDetalles = false;
+      this.visibleCategorias = true;
     },
-    ocultarPlaces(){
-      this.visible = false;
-    },
-    async mostrarDetalles(id){
+    async showDetalles(id){
+      if(this.mostrarDetalles){
+        this.ocultarDetalles();
+      }
+
       try{
-        console.log(localStorage)
         //var tokenBearer = 'Bearer ' + localStorage.token;
         console.log("AQUIIII:")
-        console.log(id)
         var idPlace = id
         const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
           method: 'GET',
@@ -135,19 +150,24 @@ export default {
         var aux = await response.json();
         console.log(aux);
         this.detalles = aux['respuesta']
-        console.log(this.myplaces)
-        this.visible = true;
-        console.log(this.visible)
+        this.mostrarDetalles = true;
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
+    },
+    ocultarPlaces(){
+      this.mostrarPlaces = false,
+      this.mostrarDetalles = false,
+      this.visibleCategorias = false;
+    },
+    ocultarDetalles(){
+      this.mostrarDetalles = false;
     }
   },
 
   mounted() {
-    this.getCategories(),
-    this.mostrarDetalles();
+    //this.mostrarDetalles();
 
   }
 }
