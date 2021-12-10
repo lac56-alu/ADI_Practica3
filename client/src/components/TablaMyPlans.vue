@@ -9,14 +9,15 @@
           <th>Id</th>
           <th>Nombre</th>
           <td> </td>
+          <td> </td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="p in myplans" :key="p.id">
           <td>{{ p.id }}</td>
           <td>{{ p.name }}</td>
-          <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles aqui </button> </td> 
-          <!-- <td> <button> <router-link :to="{name: 'eliminar', params: {id: p.id}}" style="color: black">  Eliminar </router-link>  </button> </td> -->
+          <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles </button> </td> 
+          <td> <button> <router-link :to="{name: 'eliminarPlan', params: {id: p.id}}" style="color: black">  Eliminar </router-link>  </button> </td> 
 
         </tr>
       </tbody>

@@ -79,6 +79,11 @@ const routes = [
     component: () => import('../views/ListaMisPlanes.vue')
   },
   {
+    path: '/eliminarPlan/:id',
+    name: 'eliminarPlan',
+    component: () => import('../views/EliminarPlan.vue')
+  },
+  {
     path: '/modificar/:id',
     name: 'modificar',
     component: () => import('../views/ModificarPlace.vue')
