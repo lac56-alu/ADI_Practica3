@@ -10,7 +10,7 @@
 
     <div class="container">
   
-        <h1 id="texto">Lista de mis lugares:</h1> <br>
+        <h1 id="texto">Lista de lugares creados por mi:</h1> <br>
 
         <div class="row">
 

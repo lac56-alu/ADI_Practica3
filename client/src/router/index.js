@@ -29,9 +29,14 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/places',
+    path: '/home',
     name: 'ListaPlaces',
     component: () => import('../views/ListaPlaces.vue')
+  },
+  {
+    path: '/places',
+    name: 'ListaPlaces',
+    component: () => import('../views/ListaPlacesLoggeado.vue')
   },
   {
     path: '/myplaces',

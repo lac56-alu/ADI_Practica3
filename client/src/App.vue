@@ -3,9 +3,10 @@
     <ul>
       <div id="nav">
         <v-toolbar-items>
-        <li> <router-link to="/places">Inicio</router-link> </li>
+        <li> <router-link to="/home">Inicio</router-link> </li>
         <li v-if="currentUser" > <router-link to="/categories">Categorías</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/myplaces">Mis lugares</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/places">Ver todos los lugares</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/myplaces">Ver mis lugares</router-link> </li>
         <li v-if="currentUser" > <router-link to="/createPlace">Crear Lugar</router-link> </li>
         <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">LogOut </a> </li>
@@ -55,7 +56,7 @@ export default {
   methods: {       
     logoutUser() {
       this.$store.dispatch('auth/logout');
-      this.$router.push('/places');
+      this.$router.push('/inicio');
     },
     comprobarRegistro(){
       
