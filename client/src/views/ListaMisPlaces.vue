@@ -51,8 +51,6 @@ export default {
         console.log("MISSSS PLANEEESSS")
         console.log(u.token)
         var tokenBearer = 'Bearer ' + u.token;*/
-        console.log("MISSSS PLANEEESSS")
-        console.log(authservice().Authorization)
         const response = await fetch('http://localhost:3000/api/mi/place', {
           method: 'GET',
           headers: { 'Authorization': authservice().Authorization },

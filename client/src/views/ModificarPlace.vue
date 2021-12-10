@@ -51,7 +51,6 @@
                             <input class="form-control" type="text" id="cityChange" name="city" required v-bind:value="this.detalles[0].city">
                             <br>
                             
-                            
                             <div style="text-align: center;">
                               <button id="but_reg" class="btn btn-info btn-md" type="submit" value="Modificar" style="margin: 10px"> Modificar </button>
                             </div>
