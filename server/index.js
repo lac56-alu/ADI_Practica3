@@ -375,7 +375,7 @@ app.put('/api/modify/place/:id', checkJWT, async function(pet,resp) {
                         }
                         else{       
                            console.log(res)
-                           resp.status(204)                     
+                           resp.status(204) .send({"respuesta": "Se ha modificado el lugar de forma correcta."})                    
                         }
                      })
 

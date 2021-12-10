@@ -38,8 +38,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -52,9 +50,12 @@ export default {
   },
   data(){
     return{
-      visibleDetalles: false,
-      detalles: []
+      detalles: [],
+      visibleDetalles: '',
     }
+  },
+  created(){
+    this.visibleDetalles = false;
   },
   methods: {
     async mostrarDetalles(id){
@@ -73,19 +74,11 @@ export default {
         console.log(aux);
         this.detalles = aux['respuesta']
         console.log(this.myplaces)
-        this.toggleVisible();
+        this.visibleDetalles = true;
         console.log(this.visible)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
-      }
-    },
-    toggleVisible(){
-      if(this.visibleDetalles == true){
-        this.visibleDetalles = false;
-      }
-      else{
-        this.visibleDetalles = true;
       }
     }
   },

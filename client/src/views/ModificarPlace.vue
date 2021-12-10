@@ -10,9 +10,22 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
+                      <div style="text-align: right;">
+                        <button id="salir" class="btn btn-info btn-md" v-on:click="salir()"> Salir </button>
+                      </div>
+
+                      <h3 class="text-center text-info">Modificar Lugar</h3>
+                      <br>
+
+                      <div v-if="mensajeBueno" class="alert alert-success" role="alert">
+                        {{ this.mensajeBueno}}
+                      </div>
+
+                      <div v-if="mensajeMalo" class="alert alert-danger" role="alert">
+                        {{ this.mensajeMalo}}
+                      </div>
+
                         <form id="login-form2" class="form" name="form" @submit.prevent="updatePlace">
-                            <h3 class="text-center text-info">Modificar Lugar</h3>
-                            
                             <label for="category" class="text-info">Categoria:  </label><br>
                             <select id="selectCategory" for="selectCategory" name="selectCategory">
                                 <option v-for="cat in this.categories" :key="cat['id']">
@@ -39,7 +52,9 @@
                             <br>
                             
                             
-                            <div style="text-align: center;"><button id="but_reg" class="btn btn-info btn-md" type="submit" value="Modificar"> Modificar </button></div>
+                            <div style="text-align: center;">
+                              <button id="but_reg" class="btn btn-info btn-md" type="submit" value="Modificar" style="margin: 10px"> Modificar </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -52,6 +67,7 @@
 <script>
 import { getCategory, getIdCategory } from '../services/CategoryService';
 import authservice from '../services/auth-header';
+import axios from 'axios';
 
 export default {
 
@@ -65,6 +81,8 @@ export default {
       address: '',
       city: '',
       categoryID: '',
+      mensajeBueno: '',
+      mensajeMalo: ''
     }
   },
   async created() {
@@ -84,28 +102,29 @@ export default {
         this.categoryID = getIdCategory(this.categories, document.getElementById("selectCategory").value)
         var idPlace = this.$route.params.id
 
-        const response = await fetch('http://localhost:3000/api/modify/place/' + idPlace, {
-          method: 'PUT',
-          headers: { 
-            'Authorization': authservice().Authorization, 
-            'Access-Control-Request-Headers': '*',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              name: this.name,
-              description: this.description,
-              city: this.city,
-              address: this.address,
-              category_id: this.categoryID
-          }),
+        const response = await axios
+        .put('http://localhost:3000/api/modify/place/' + idPlace, 
+        {
+          name: this.name,
+          description: this.description,
+          city: this.city,
+          address: this.address,
+          category_id: this.categoryID
+        },
+        {
+          headers:{
+            'Authorization': authservice().Authorization
+          } 
+        })
+        .then(response => {
+          console.log("REPUESTAAAAAAA")
+          console.log(response)
+          this.mensajeBueno = "Se ha modificado el lugar correctamente";
+        })
+        .catch((error) => {
+          console.error(error)
+          this.mensajeMalo = "No se ha podido modificar el lugar";
         });
-        
-        console.log(response)
-        var aux = await response.json();
-        
-        console.log("REPUESTAAAAAAA")
-        console.log(aux)
-        this.$router.push("/myplaces");
 
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
@@ -130,6 +149,9 @@ export default {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
+    },
+    salir(){
+      this.$router.push("/myplaces");
     }   
   }
 }
