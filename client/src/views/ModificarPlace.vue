@@ -119,6 +119,7 @@ export default {
           console.log("REPUESTAAAAAAA")
           console.log(response)
           this.mensajeBueno = "Se ha modificado el lugar correctamente";
+          this.getDetalles();
         })
         .catch((error) => {
           console.error(error)

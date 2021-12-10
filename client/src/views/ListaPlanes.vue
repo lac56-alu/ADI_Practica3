@@ -13,9 +13,7 @@
         
         <div class="row">
 
-          <table id="table" class="table table-striped table-bordered table-hover">
-            <tabla-planes :plans="plans"/>
-          </table>
+          <tabla-planes :plans="plans"/>
 
         </div>
 
@@ -25,7 +23,7 @@
 </template>
 
 
-    <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"> </script>
+  <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"> </script>
 
 <script>
 import TablaPlanes from '@/components/TablaPlanes.vue';
@@ -75,9 +73,7 @@ export default {
   color: #17a2b8;
   font-weight:400;
 }
-#table{
-  width: 500px;
-}
+
 
 
 </style>

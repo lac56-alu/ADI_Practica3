@@ -3,7 +3,7 @@
     <div v-if="!places.length" class="alert alert-info" role="alert">
       No existen lugares
     </div>
-    <table class="table">
+    <table v-if="!places.length" class="table">
       <thead>
         <tr>
           <th>Id</th>
