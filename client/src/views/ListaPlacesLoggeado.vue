@@ -12,8 +12,8 @@
   
         <h1 id="texto">Lista de todos los lugares:</h1> <br>
 
-        <table>
-          <td>
+        <table style='table-layout:fixed; width:100%'> 
+          <td id="col1">
                   <div class="row">
 
                     <table id="table" class="table">
@@ -37,7 +37,7 @@
 
                   </div>
           </td>
-          <td>
+          <td id="col2">
                   <div>     
                     <table v-if="visibleDetalles == true" id="table" class="table table-striped table-bordered table-hover">
                         <thead>
@@ -135,6 +135,13 @@ export default {
 </script>
 
 <style scoped>
+
+#col1{
+  width: 80%;
+}
+#col2{
+  width: 20%;
+}
 
 #texto{
   color: #17a2b8;
