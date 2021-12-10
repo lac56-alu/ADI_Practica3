@@ -46,3 +46,19 @@ export async function modifyPlace(n,d,a,ci,ca, ID) {
     console.log(aux)
     return aux;
 }
+
+export async function getPlace() {
+    const response = await fetch("http://localhost:3000/api/place");
+    var aux = await response.json();
+  
+    return aux['respuesta']['data'];
+  }
+  
+  export function getIdPlace(arrayPl, name){
+    for(let i = 0; i < arrayPl.length; i++){
+      console.log(arrayPl[i])
+      if(arrayPl[i]['type'] == name){
+        return arrayPl[i]['id'];
+      }
+    }
+  }
