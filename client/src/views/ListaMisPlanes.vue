@@ -20,7 +20,7 @@
                 No existen planes
               </div>
               <table v-if="mostrarPlans" class="table">
-                <thead>
+                <thead style="background: #17a2b8 ">
                   <tr>
                     <th>Nombre</th>
                     <td> </td>

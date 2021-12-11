@@ -20,7 +20,7 @@
   </div>
 
   <div id="todo">
-    <div class="container" style="">
+    <div class="container">
   
         <h3 id="texto">Descubre los mejores lugares: </h3> 
         

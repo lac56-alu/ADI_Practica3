@@ -4,7 +4,7 @@
       No existen lugares
     </div>
     <table class="table">
-      <thead>
+      <thead style="background: #17a2b8 ">
         <tr>
           <th>Nombre</th>
         </tr>

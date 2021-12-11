@@ -4,7 +4,7 @@
       No existe informacion del lugar
     </div>
     <table class="table table-striped table-bordered table-hover">
-      <thead>
+      <thead style="background: #17a2b8 ">
         <tr>
           <th>Nombre</th>
           <th>Descripcion </th>
