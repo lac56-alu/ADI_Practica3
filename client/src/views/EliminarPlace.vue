@@ -21,44 +21,52 @@
 
 
 <script>
-export default {
+import authservice from '../services/auth-header';
+import axios from 'axios';
 
+export default { 
   data(){
     return{
       detalles: []
     }
   },
-
-  components: {
-      
-  },
   
   methods:{
     async deletePlace(){
       try{
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
-        var idPlace = this.$route.params.id
-        const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
+        var id = this.$route.params.id;
+        /*const response = await fetch('http://localhost:3000/api/place/' + id, {
           method: 'DELETE',
-          headers: { 'Authorization': tokenBearer },
+          headers: { 'Authorization': authservice().Authorization },
+        });*/
+
+        await axios
+        .delete('http://localhost:3000/api/place/' + id,
+        {
+          headers:{
+            'Authorization': authservice().Authorization
+          } 
+        })
+        .then(response => {
+          console.log("REPUESTAAAAAAA")
+          console.log(response)
+          this.$router.push('/myplaces');
+        })
+        .catch((error) => {
+          console.error(error)
+          
         });
 
-        var aux = await response.json();
+        /*var aux = await response.json();
         console.log(aux);
         this.detalles = aux['respuesta']
-        console.log(this.myplaces)
-        this.$router.push({path: 'myplaces'}); ////////////////////////////// redirige mal 
+        console.log(this.detalles)
+        this.$router.push({path: 'myplaces'});*/ ////////////////////////////// redirige mal 
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
     },
-  },
-
-  mounted() {
-      this.deletePlace()
-
   }
 }
 
