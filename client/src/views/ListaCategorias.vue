@@ -12,7 +12,7 @@
   
       <h1 id="texto"> Categorías: </h1> <br>
       
-      <div class="row">
+      <div >
 
         <!-- <table id="table" class="table table-striped table-bordered table-hover">
           <tabla-categorias :categories="categories"/>
