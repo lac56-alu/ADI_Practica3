@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'ListaPlaces',
+    component: () => import('../views/ListaPlaces.vue')
   },
   {
     path: '/about',
@@ -69,11 +68,6 @@ const routes = [
     component: () => import('../views/CreatePlaces.vue')
   },
   {
-    path: '/perfil',
-    name: 'perfil',
-    component: () => import('../views/Perfil.vue')
-  },
-  {
     path: '/plans',
     name: 'plans',
     component: () => import('../views/ListaPlanes.vue')
@@ -82,6 +76,11 @@ const routes = [
     path: '/myplans',
     name: 'ListaMisPlanes',
     component: () => import('../views/ListaMisPlanes.vue')
+  },
+  {
+    path: '/perfil',
+    name: 'Perfil',
+    component: () => import('../views/Perfil.vue')
   },
   {
     path: '/eliminarPlan/:id',

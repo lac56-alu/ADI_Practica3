@@ -12,7 +12,7 @@
   
         <h1 id="texto">Lista de todos los lugares:</h1> <br>
 
-        <table style='table-layout:fixed; width:100%'> 
+        <table style='table-layout:fixed; width:100% height: 100%'> 
           <td id="col1">
                   <div class="row">
 
@@ -139,10 +139,10 @@ export default {
 <style scoped>
 
 #col1{
-  width: 80%;
+  width: 70%;
 }
 #col2{
-  width: 20%;
+  width: 30%;
 }
 
 #texto{

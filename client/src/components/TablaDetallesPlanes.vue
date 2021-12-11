@@ -39,6 +39,7 @@ export default {
 .table{
   margin: 0 auto;
   border-spacing: 0;
+  width: 100px;
 }
 
 th {

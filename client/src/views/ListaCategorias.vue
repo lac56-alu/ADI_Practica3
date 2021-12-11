@@ -18,7 +18,7 @@
           <tabla-categorias :categories="categories"/>
         </table> -->
         
-        <th v-for="c in categories" :key="c.id">
+        <th v-for="c in categories" :key="c.id" style="margin: 0 auto;">
           <button class="btn btn-info btn-md" v-on:click="mostrarCategoria(c.id)"> {{ c.type }}</button>   
         </th>
       

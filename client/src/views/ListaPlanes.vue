@@ -10,12 +10,8 @@
     <div class="container" style="">
   
         <h3 id="texto">Descubre los mejores planes: </h3> <br>
-        
-        <div class="row">
 
           <tabla-planes :plans="plans"/>
-
-        </div>
 
     </div>
   </div>

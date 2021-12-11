@@ -1,5 +1,4 @@
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
@@ -25,10 +24,13 @@
                                 <input class="form-control" v-model="captarPassword" type="password" name="password" required placeholder="password" id="password" >
                                  <!-- CONTROL DE ERRORES -> TEXTO EN ROJO -->
                             </div>
-                            <div class="form-group">
-                                <button type="submit" name="submit" class="btn btn-info btn-md" value="Login" >
-                                    Login
-                                </button>
+                            <div :class="{ shake: noActivated }">
+
+                                <div class="form-group">
+                                    <button v-on:click="noActivated = true" type="submit" name="submit" class="btn btn-info btn-md" value="Login" >
+                                        Login
+                                    </button>
+                                </div>
                                     
                             </div>
                         </form>
@@ -108,7 +110,6 @@
 </script>
 
 <style scoped>
-
 .shake {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);

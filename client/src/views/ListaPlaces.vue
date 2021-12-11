@@ -40,7 +40,7 @@
 </template>
 
 
-    <script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"> </script>
+<script src="https://unpkg.com/vue@2.5.17/dist/vue.min.js"> </script>
 
 <script>
 import TablaPlaces from '@/components/TablaPlaces.vue';
