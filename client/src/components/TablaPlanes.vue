@@ -28,7 +28,7 @@
               <button id="salir" class="btn btn-info btn-md" v-on:click="ocultarDetalles()"> Ocultar Detalles </button>
             </div>
             <br>   
-            <table class="table table-striped table-bordered table-hover">
+            <table id="table" class="table table-striped table-bordered table-hover">
               <tabla-detalles-planes :detallesPlanes="detallesPlanes"/>
             </table> 
             <br>
