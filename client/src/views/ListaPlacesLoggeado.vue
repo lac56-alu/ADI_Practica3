@@ -12,13 +12,56 @@
   
         <h1 id="texto">Lista de todos los lugares:</h1> <br>
 
-        <div class="row">
+        <table style='table-layout:fixed; width:100%'> 
+          <td id="col1">
+                  <div class="row">
 
-          <table id="table" class="table">
-            <tabla-places-loggeado :places="places"/>
-          </table>
+                    <table id="table" class="table">
+                        
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Nombre</th>
+                          <td> </td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="place in places" :key="place.id">
+                          <td>{{ place.id }}</td>
+                          <td>{{ place.name }}</td>
+                          <td > <button v-on:click="mostrarDetalles(place.id)"> Ver detalles aqui </button> </td> 
+                        </tr>
+                      </tbody>
 
-        </div>
+                    </table>
+
+                  </div>
+          </td>
+          <td id="col2">
+                  <div>     
+                    <table v-if="visibleDetalles == true" id="table" class="table table-striped table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th>Nombre</th>
+                            <th>Descripcion </th>
+                            <th>Ciudad </th>
+                            <th> Dirección </th>
+                            <th> Categoria </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="d in detalles" :key="d.id">
+                            <td>{{ d.name }}</td>
+                            <td>{{ d.description }}  </td>
+                            <td> {{ d.city }}</td>
+                            <td> {{ d.address }}  </td>
+                            <td> {{d.category_id}} </td>
+                          </tr>
+                        </tbody>
+                    </table> <br>
+                  </div>
+          </td>
+        </table>
 
     </div>
 
@@ -28,18 +71,21 @@
 
 
 <script>
-import TablaPlacesLoggeado from '@/components/TablaPlacesLoggeado.vue';
+
+import authservice from '../services/auth-header';
 
 export default {
 
   data(){
     return{
-      places: []
+      places: [],
+      visibleDetalles: false,
+      detalles: []
     }
   },
 
-  components: {
-    TablaPlacesLoggeado
+  created(){
+    this.visibleDetalles = false;
   },
   
   methods:{
@@ -55,17 +101,47 @@ export default {
           console.error(error);
       }
     },
+    async mostrarDetalles(id){
+      try{
+        console.log(localStorage)
+        //var tokenBearer = 'Bearer ' + localStorage.token;
+        this.visibleDetalles = true;
+        console.log("AQUIIII:")
+        console.log(id)
+        var idPlace = id
+        const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
+          method: 'GET',
+          headers: { 'Authorization': authservice().Authorization },
+        });
+
+        var aux = await response.json();
+        console.log(aux);
+        this.detalles = aux['respuesta']
+        console.log(this.visibleDetalles)
+      }catch (error)  {
+        //En ese caso, no mostrar la vista!!!!!!!!!!!
+        console.error(error);
+      }
+    }    
   },
 
 
   mounted() {
-    this.getAllPlaces()
+    this.getAllPlaces(),
+    this.mostrarDetalles()
   }
 }
 
 </script>
 
 <style scoped>
+
+#col1{
+  width: 80%;
+}
+#col2{
+  width: 20%;
+}
 
 #texto{
   color: #17a2b8;

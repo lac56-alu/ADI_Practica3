@@ -84,6 +84,11 @@ const routes = [
     component: () => import('../views/EliminarPlan.vue')
   },
   {
+    path: '/createPlan',
+    name: 'crearPlan',
+    component: () => import('../views/CreatePlans.vue')
+  },
+  {
     path: '/modificar/:id',
     name: 'modificar',
     component: () => import('../views/ModificarPlace.vue')
