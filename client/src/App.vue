@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     currentUser(){
-      return JSON.parse(this.$store.state.auth.user);
+      return this.$store.state.auth.user;
     }
   },
   created() {
