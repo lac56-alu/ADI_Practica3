@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import VueRouter from 'vue-router'
 import JwPagination from 'jw-vue-pagination';
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
