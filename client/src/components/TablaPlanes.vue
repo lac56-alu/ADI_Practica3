@@ -5,40 +5,40 @@
         No existen planes
       </div>
 
-      <table class="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="p in plans" :key="p.id">
-            <td>{{ p.name }}</td>
-            <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles </button> </td> 
-          </tr>
-        </tbody>
-      </table> 
-      <br>
-    </div>
-    
 
-    <div v-if="mostrarDetallesPlan">  
-      <div style="text-align: right;">
-        <button id="salir" class="btn btn-info btn-md" v-on:click="ocultarDetalles()"> Ocultar Detalles </button>
-      </div>
-      <br>   
-      <table class="table table-striped table-bordered table-hover">
-        <tabla-detalles-planes :detallesPlanes="detallesPlanes"/>
-      </table> 
-      <br>
-    </div>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="p in plans" :key="p.id">
+                  <td>{{ p.name }}</td>
+                  <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles </button> </td> 
+                </tr>
+              </tbody>
+            </table> 
+            <br>
+          
 
+          <div v-if="mostrarDetallesPlan">  
+            <div style="text-align: right;">
+              <button id="salir" class="btn btn-info btn-md" v-on:click="ocultarDetalles()"> Ocultar Detalles </button>
+            </div>
+            <br>   
+            <table class="table table-striped table-bordered table-hover">
+              <tabla-detalles-planes :detallesPlanes="detallesPlanes"/>
+            </table> 
+            <br>
+          </div>
+
+  </div>
   </div>
 </template>
 
 <style>
-  
 
 tr:nth-child(even) {background-color: #f2f2f2;}
 
