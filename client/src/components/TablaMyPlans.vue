@@ -1,9 +1,9 @@
 <template>
   <div id="tabla-my-plans" name="tabla-my-plans">
-    <div v-if="!myplans.length" class="alert alert-info" role="alert">
+    <div v-if="myplans == []" class="alert alert-info" role="alert">
       No existen planes
     </div>
-    <table class="table">
+    <table v-if="myplans.length > 0" class="table">
       <thead>
         <tr>
           <th>Id</th>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import authservice from '../services/auth-header';
 
 export default {
   name: 'tabla-my-plans',
@@ -46,19 +47,14 @@ export default {
     }
   },
   created(){
-    this.visibleDetalles = false;
+
   },
   methods: {
     async mostrarDetalles(id){
       try{
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
-        console.log("AQUIIII:")
-        console.log(id)
-        var idPlace = id
-        const response = await fetch('http://localhost:3000/api/place/' + idPlace, {
+        const response = await fetch('http://localhost:3000/api/place/' + id, {
           method: 'GET',
-          headers: { 'Authorization': tokenBearer },
+          headers: { 'Authorization': authservice().Authorization },
         });
 
         var aux = await response.json();
