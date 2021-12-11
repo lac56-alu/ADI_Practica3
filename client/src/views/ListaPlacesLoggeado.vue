@@ -20,14 +20,12 @@
                         
                       <thead>
                         <tr>
-                          <th>Id</th>
                           <th>Nombre</th>
                           <td> </td>
                         </tr>
                       </thead>
                       <tbody>
                         <tr v-for="place in places" :key="place.id">
-                          <td>{{ place.id }}</td>
                           <td>{{ place.name }}</td>
                           <td > <button v-on:click="mostrarDetalles(place.id)"> Ver detalles aqui </button> </td> 
                         </tr>
@@ -37,9 +35,10 @@
 
                   </div>
           </td>
-          <td id="col2">
-                  <div>     
-                    <table v-if="visibleDetalles == true" id="table" class="table table-striped table-bordered table-hover">
+          <td id="col2" v-if="visibleDetalles">
+            <div style="text-align: left;"> <button class="btn btn-info btn-md" id="botonX" v-on:click="ocultarDetalles"> Ocultar Detalles </button> </div> <br>
+                  <div>
+                    <table id="table" class="table table-striped table-bordered table-hover">
                         <thead>
                           <tr>
                             <th>Nombre</th>
@@ -96,6 +95,7 @@ export default {
         var aux = await response.json();
         this.places = aux['respuesta']['data']
         console.log(aux['respuesta']['data'])
+        this.visibleDetalles = false;
         //this.places =  await response.json();
       } catch (error) {
           console.error(error);
@@ -122,9 +122,11 @@ export default {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
-    }    
+    } ,
+    ocultarDetalles(){
+      this.visibleDetalles = false;
+    }   
   },
-
 
   mounted() {
     this.getAllPlaces(),
