@@ -60,11 +60,6 @@ export default {
       }
     },
   },
-
-  mounted() {
-      this.deletePlan()
-
-  }
 }
 
 </script>
