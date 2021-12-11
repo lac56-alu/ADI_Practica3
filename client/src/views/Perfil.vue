@@ -75,8 +75,6 @@ export default {
   
   created(){
     this.usuario = JSON.parse(this.$store.state.auth.user);
-    console.log("ESTOOOO")
-    console.log(this.usuario.user[0]['city'])
   }
 }
 

@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <template>
   <div id="app">
     <ul>
@@ -11,7 +14,7 @@
         <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>
         <li v-if="currentUser" > <router-link to="/myplans">Ver mis planes</router-link> </li>
         <li v-if="currentUser" > <router-link to="/createPlan">Crear Plan</router-link> </li>
-        <li v-if="currentUser" style="float:right"> <router-link to="/perfil"> Perfil </router-link> </li>
+        <li v-if="currentUser" style="float:right"> <router-link to="/perfil"> Hola, {{ this.usuario.user[0]['name'] }} </router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">Log Out</a> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/register">Registro</router-link> </li> 
@@ -31,16 +34,17 @@ export default {
   data(){
     return{
       registrado: this.comprobarRegistro(),
-      usuario: localStorage.userName,
+      usuario: '',
       log: localStorage.registrado
     }
   },
   computed: {
     currentUser(){
-      return this.$store.state.auth.user;
+      return JSON.parse(this.$store.state.auth.user);
     }
   },
   created() {
+    this.usuario = JSON.parse(this.$store.state.auth.user);
     console.log(this.registrado)
     if(localStorage.registrado){
       this.registrado = false
