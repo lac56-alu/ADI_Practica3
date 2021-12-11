@@ -6,7 +6,6 @@
     <table v-if="myplans.length > 0" class="table">
       <thead>
         <tr>
-          <th>Id</th>
           <th>Nombre</th>
           <td> </td>
           <td> </td>
@@ -14,7 +13,6 @@
       </thead>
       <tbody>
         <tr v-for="p in myplans" :key="p.id">
-          <td>{{ p.id }}</td>
           <td>{{ p.name }}</td>
           <td > <button v-on:click="mostrarDetalles(p.id)"> Ver detalles </button> </td> 
           <td> <button> <router-link :to="{name: 'eliminarPlan', params: {id: p.id}}" style="color: black">  Eliminar </router-link>  </button> </td> 
