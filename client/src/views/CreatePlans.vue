@@ -13,7 +13,7 @@
                         <form id="login-form2" class="form" name="form" @submit.prevent="createPlans">
                             <h3 class="text-center text-info">Crear Plan</h3>
                             
-                            <label for="category" class="text-info">Lugar:  </label><br>
+                            <label for="lugar" class="text-info">Lugar:  </label><br>
                             <select id="selectPlace" for="selectPlace" name="selectPlace">
                                 <option v-for="pl in this.places" :key="pl['id']">
                                     {{ pl['name'] }}
@@ -64,10 +64,12 @@
             async createPlans(){
                 this.name = document.getElementById("name").value;
                 this.description = document.getElementById("description").value;
-                this.placeID = getIdPlace(this.places, document.getElementById("selectPlace").value)
+                this.placeID = await getIdPlace(document.getElementById("selectPlace").value)
+                console.log("ESTOOOOOOOOO")
+                console.log(this.placeID)
 
                 try{
-                    var response = await createPlan(this.name, this.description, this.categoryID);
+                    var response = await createPlan(this.name, this.description, this.placeID);
                     console.log("RESPUESTA POST")
                     console.log(response)
                     this.$router.push({path: 'myplans'});

@@ -21,6 +21,9 @@
 
 
 <script>
+import authservice from '../services/auth-header';
+import axios from 'axios';
+
 export default {
 
   data(){
@@ -32,18 +35,25 @@ export default {
   methods:{
     async deletePlan(){
       try{
-        console.log(localStorage)
-        var tokenBearer = 'Bearer ' + localStorage.token;
-        var idPlace = this.$route.params.id
-        const response = await fetch('http://localhost:3000/api/plan/' + idPlace, {
-          method: 'DELETE',
-          headers: { 'Authorization': tokenBearer },
-        });
+        var id = this.$route.params.id;
 
-        var aux = await response.json();
-        console.log(aux);
-        this.detalles = aux['respuesta']
-        this.$router.push({path: 'myplans'}); ////////////////////////////// redirige mal 
+        const response = await axios
+        .delete('http://localhost:3000/api/plan/' + id,
+        {
+          headers:{
+            'Authorization': authservice().Authorization
+          } 
+        })
+        .then(response => {
+          console.log("REPUESTAAAAAAA")
+          console.log(response.data.repuesta)
+          this.$router.push('/myplans');
+        })
+        .catch((error) => {
+          console.error(error)
+        }); 
+        
+        console.log(response)
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);

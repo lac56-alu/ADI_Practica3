@@ -102,7 +102,7 @@ export default {
   methods:{
     async mostrarDetalles(id){
       try{
-        const response = await fetch('http://localhost:3000/api/place/' + id, {
+        const response = await fetch('http://localhost:3000/api/plan/' + id, {
           method: 'GET',
           headers: { 'Authorization': authservice().Authorization },
         });
