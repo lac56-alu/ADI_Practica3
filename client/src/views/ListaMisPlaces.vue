@@ -12,7 +12,11 @@
   
         <h1 id="texto">Lista de lugares creados por mi:</h1> <br>
 
-        <div class="row">
+        <div v-if="!mostrarTabla" class="alert alert-info" role="alert">
+          No existen lugares
+        </div>
+
+        <div class="row" v-if="mostrarTabla">
 
           <table id="table" class="table">
             <tabla-my-places :myplaces="myplaces"/>
@@ -35,7 +39,8 @@ export default {
 
   data(){
     return{
-      myplaces: []
+      myplaces: [],
+      mostrarTabla: false
     }
   },
 
@@ -43,9 +48,8 @@ export default {
     TablaMyPlaces
   },
   
-  methods:{
-    async getMyPlaces(){
-      try{
+  async created() {
+    try{
         /*console.log(localStorage)
         var u = JSON.parse(localStorage.getItem('user'));
         console.log("MISSSS PLANEEESSS")
@@ -60,15 +64,14 @@ export default {
         console.log(aux);
         this.myplaces = aux['respuesta']
         console.log(this.myplaces)
+        if(this.myplaces != "Error"){
+          this.mostrarTabla = true;
+        }
+
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
       }
-    },
-  },
-
-  mounted() {
-    this.getMyPlaces()
   }
 }
 

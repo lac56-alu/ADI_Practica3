@@ -8,12 +8,12 @@
         <v-toolbar-items>
         <li> <router-link to="/home">Inicio</router-link> </li>
         <li v-if="currentUser" > <router-link to="/categories">Categorías</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/places">Ver todos los lugares</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/myplaces">Ver mis lugares</router-link> </li>
         <li v-if="currentUser" > <router-link to="/createPlace">Crear Lugar</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/myplans">Ver mis planes</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/myplaces">Ver mis lugares</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/places">Ver todos los lugares</router-link> </li> 
         <li v-if="currentUser" > <router-link to="/createPlan">Crear Plan</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/myplans">Ver mis planes</router-link> </li>
+        <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>     
         <li v-if="currentUser" style="float:right"> <router-link to="/perfil"> Hola, {{ this.usuario.user[0]['name'] }} </router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">Log Out</a> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>

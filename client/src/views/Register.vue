@@ -33,7 +33,7 @@
               <br>
 
               <label for="mail" class="text-info">Password:  </label>
-              <input class="form-control" type="text" id="password" name="password" v-model="password">
+              <input class="form-control" type="password" id="password" name="password" v-model="password">
               <br>
               
               <div style="text-align: center;"><button id="but_reg" class="btn btn-info btn-md" type="submit" value="Register"> Register </button></div>

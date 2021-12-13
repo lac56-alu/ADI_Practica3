@@ -71,24 +71,6 @@
         },
         methods: {       
             loginUser() {
-                /*login(this.captarUserName, this.captarPassword).then(response => {
-                    if(response.token){
-                        this.registrado = true
-                        this.token = response.token 
-                        //console.log(response)
-                        localStorage.user = this.captarUserName;
-                        localStorage.token = response.token;
-                        this.user = new User(response.user[0], response.token)
-                        localStorage.registrado = true;
-                        //console.log(localStorage.user)
-                        //console.log(this.$router)
-                        this.$router.push({path: 'myplaces'});
-                        
-                    }
-                    else{
-                        console.log("no token")
-                    } 
-                });*/
                 if (this.captarUserName && this.captarPassword) {
                     var captados = [];
                     captados.push(this.captarUserName);
@@ -96,11 +78,11 @@
 
                     this.$store.dispatch('auth/login', captados).then(
                         () => {
-                        this.$router.push({path: 'myplaces'});
+                            this.$router.push('/myplaces');
                         },
                         error => {
-                        this.loading = false;
-                        this.mensaje = "Datos incorrectos"
+                            this.loading = false;
+                            this.mensaje = "Datos incorrectos"
                         }
                     );
                 }

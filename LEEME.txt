@@ -1,0 +1,31 @@
+-- PRÁCTICA EVALUABLE 3 --
+Luis Alfonso Culiañez y Raquel Martínez García
+
+
+Nuestra aplicación consiste en descubrir nuevos lugares y planes para hacer.
+En la parte pública podrás:
+	· Ver un listado de los lugares que han creado otros usuarios
+	· Rregistrarte y loggearte
+En la parte privada podrás:
+	· Ver detalles de todos los lugares creados por otros usuarios o por ti
+	· Eliminar los lugares creados por ti
+	· Modificar los lugares creados por ti
+	· Crear nuevos lugares
+	· Ver detalles de todos los planes creados por otros usuarios o por ti
+	· Filtrar la búsqueda de lugares según su tipo de categoría
+	· Ver los datos de tu perfil
+
+
+Partes optativas implementadas:
+
+· Uso de vue-cli y single file components
+· Implementación de otro listado (en nuestro caso Planes)
+	 incluyendo Ver Detalles y Crear Planes
+· Formulario para editar los datos de los Lugares creados
+· Introducción de alguna transición y animación
+	al aparecer cada página se difumina lentamente
+	al introducir la contraseña de Login mal, vibra el botón
+· Uso de bootstrap
+· Uso de Vuex
+· Uso de Vure router
+· Añadida paginación en el listado de la parte pública
