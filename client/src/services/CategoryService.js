@@ -31,3 +31,16 @@ export async function getPlacesByCategory(id) {
   var resp = await response.json();
   return resp;
 }
+
+
+export async function getCategoryName(id) {
+  //var tokenBearer = 'Bearer ' + localStorage.token;
+  const response = await fetch('http://localhost:3000/api/category/' + id, {
+    method: 'GET',
+    headers: { 'Authorization': authservice().Authorization },
+  });
+  var resp = await response.json();
+  console.log(resp);
+
+  return resp['respuesta'][0]['type'];
+}

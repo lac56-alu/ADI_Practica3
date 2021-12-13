@@ -54,7 +54,7 @@
                             <td>{{ d.description }}  </td>
                             <td> {{ d.city }}</td>
                             <td> {{ d.address }}  </td>
-                            <td> {{d.category_id}} </td>
+                            <td> {{ catName }} </td>
                           </tr>
                         </tbody>
                     </table> <br>
@@ -70,7 +70,7 @@
 
 
 <script>
-
+import { getCategoryName} from '../services/CategoryService';
 import authservice from '../services/auth-header';
 
 export default {
@@ -79,7 +79,8 @@ export default {
     return{
       places: [],
       visibleDetalles: false,
-      detalles: []
+      detalles: [],
+      catName: ''
     }
   },
 
@@ -116,8 +117,8 @@ export default {
 
         var aux = await response.json();
         console.log(aux);
-        this.detalles = aux['respuesta']
-        console.log(this.visibleDetalles)
+        this.detalles = aux['respuesta'] 
+        this.catName = await getCategoryName(this.detalles[0]['category_id']);
       }catch (error)  {
         //En ese caso, no mostrar la vista!!!!!!!!!!!
         console.error(error);
@@ -125,12 +126,13 @@ export default {
     } ,
     ocultarDetalles(){
       this.visibleDetalles = false;
+      this.catName = '';
     }   
   },
 
   mounted() {
-    this.getAllPlaces(),
-    this.mostrarDetalles()
+    this.getAllPlaces()
+    //this.mostrarDetalles()
   }
 }
 
