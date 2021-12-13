@@ -48,19 +48,31 @@ export async function modifyPlace(n,d,a,ci,ca, ID) {
 }
 
 export async function getPlace() {
-    const response = await fetch("http://localhost:3000/api/place");
-    var aux = await response.json();
-  
-    return aux['respuesta']['data'];
-  }
-  
-  export async function getIdPlace(name){
-    var resp = await getPlace();
+  const response = await fetch("http://localhost:3000/api/place");
+  var aux = await response.json();
 
-    for(let i = 0; i < resp.length; i++){
-      if(resp[i]['name'] == name){
-        console.log(resp[i]['id'])
-        return resp[i]['id'];
-      }
+  return aux['respuesta']['data'];
+}
+
+export async function getIdPlace(name){
+  var resp = await getPlace();
+
+  for(let i = 0; i < resp.length; i++){
+    if(resp[i]['name'] == name){
+      console.log(resp[i]['id'])
+      return resp[i]['id'];
     }
   }
+}
+
+export async function getPlaceName(id) {
+  //var tokenBearer = 'Bearer ' + localStorage.token;
+  const response = await fetch('http://localhost:3000/api/place/' + id, {
+    method: 'GET',
+    headers: { 'Authorization': authservice().Authorization },
+  });
+  var resp = await response.json();
+  console.log(resp);
+
+  return resp['respuesta'][0]['name'];
+}

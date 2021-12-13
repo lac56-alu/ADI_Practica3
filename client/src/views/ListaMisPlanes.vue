@@ -59,6 +59,7 @@
 
 <script>
 import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
+import { getPlaceName } from '../services/PlacesService';
 import authservice from '../services/auth-header';
 import axios from 'axios';
 
@@ -69,7 +70,7 @@ export default {
       myplans: [],
       detallesPlanes: [],
       mostrarPlans: false,
-      visiblePlansDetalles: false
+      visiblePlansDetalles: false,
     }
   },
 
@@ -108,6 +109,11 @@ export default {
         });
         var aux = await response.json();
         this.detallesPlanes = aux['respuesta']
+        console.log("ES AQIIIIIII")
+        console.log(this.detallesPlanes[0]['place_id'])
+        var name = await getPlaceName(this.detallesPlanes[0]['place_id'])
+        console.log(name)
+        this.detallesPlanes[0]['place_id'] = name
 
         this.visiblePlansDetalles = true;
       }catch (error)  {

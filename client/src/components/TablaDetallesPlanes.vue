@@ -8,7 +8,6 @@
         <tr>
           <th>Nombre</th>
           <th>Descripcion </th>
-          <th>Usuario </th>
           <th>Lugar </th>
         </tr>
       </thead>
@@ -16,7 +15,6 @@
         <tr v-for="d in detallesPlanes" :key="d.id">
           <td> {{ d.name }} </td>
           <td> {{ d.description }} </td>
-          <td> {{ d.user_id }} </td>
           <td> {{ d.place_id }} </td>
         </tr>
       </tbody>
