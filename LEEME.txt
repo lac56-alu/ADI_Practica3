@@ -29,3 +29,10 @@ Partes optativas implementadas:
 · Uso de Vuex
 · Uso de Vure router
 · Añadida paginación en el listado de la parte pública
+
+
+Para probar la práctica, además de poder registrarte, te proporcionamos
+un par de usuarios con datos ya cargados:
+
+· Usuario: raaq02 	Password: hola
+· Usuario: luiz9 	Password: hola
