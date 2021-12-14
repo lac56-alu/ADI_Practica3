@@ -7,13 +7,54 @@
       <div id="nav">
         <v-toolbar-items>
         <li> <router-link to="/home">Inicio</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/categories">Categorías</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/createPlace">Crear Lugar</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/myplaces">Ver mis lugares</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/places">Ver todos los lugares</router-link> </li> 
-        <li v-if="currentUser" > <router-link to="/createPlan">Crear Plan</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/myplans">Ver mis planes</router-link> </li>
-        <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>     
+        <li v-if="currentUser" > <router-link to="/categories">CATEGORÍAS </router-link> </li>
+        <!-- <li v-if="currentUser" > <router-link to="/createPlace">Crear Lugar</router-link> </li> -->
+        <!-- <li v-if="currentUser" > <router-link to="/myplaces">Ver mis lugares</router-link> </li> -->
+        <!-- <li v-if="currentUser" > <router-link to="/places">Ver todos los lugares</router-link> </li> -->
+        <!-- <li v-if="currentUser" > <router-link to="/createPlan">Crear Plan</router-link> </li> -->
+        <!-- <li v-if="currentUser" > <router-link to="/myplans">Ver mis planes</router-link> </li> -->
+        <!-- <li v-if="currentUser" > <router-link to="/plans">Ver planes</router-link> </li>  -->    
+        
+        <li v-if="currentUser">
+          <div @click="isOpen1 = !isOpen1" >
+          <a href ='#'>
+              LUGARES
+          </a>
+          <div v-if="isOpen1">
+              <div>
+                <li> <router-link to="/createPlace">Crear Lugar</router-link> </li>
+              </div>
+              <div>
+                <li> <router-link to="/myplaces">Ver mis lugares</router-link> </li>
+              </div>
+              <div>
+                <li> <router-link to="/places">Ver todos los lugares</router-link> </li> 
+              </div>
+          </div>
+          </div>
+        </li>
+
+
+        <li v-if="currentUser">
+          <div @click="isOpen2 = !isOpen2" >
+          <a href ='#'>
+              PLANES
+          </a>
+          <div v-if="isOpen2">
+              <div>
+                <li> <router-link to="/createPlan">Crear Plan</router-link> </li>
+              </div>
+              <div>
+                <li > <router-link to="/myplans">Ver mis planes</router-link> </li>
+              </div>
+              <div>
+                <li> <router-link to="/plans">Ver planes</router-link> </li> 
+              </div>
+          </div>
+          </div>
+        </li>
+
+
         <li v-if="currentUser" style="float:right"> <router-link to="/perfil"> Hola, {{ this.usuario.user[0]['name'] }} </router-link> </li>
         <li v-if="currentUser" style="float:right"> <a v-on:click="logoutUser">Log Out</a> </li>
         <li v-if="!currentUser" style="float:right"> <router-link to="/login">Login</router-link> </li>
@@ -35,7 +76,9 @@ export default {
     return{
       registrado: this.comprobarRegistro(),
       usuario: '',
-      log: localStorage.registrado
+      log: localStorage.registrado,
+      isOpen1: false,
+      isOpen2: false
     }
   },
   computed: {
