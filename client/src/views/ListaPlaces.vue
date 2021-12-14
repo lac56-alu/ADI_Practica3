@@ -13,7 +13,7 @@
 
   <div>
 
-    <img id="img1" src="../imagenes/rom.jpg">
+    <img id="img1" src="../imagenes/rom.jpg" >
     <img id="img2" src="../imagenes/ply.jpg">
     
 

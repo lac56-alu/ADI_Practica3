@@ -12,31 +12,39 @@
           <div id="login-box" class="col-md-12">
             <form id="login-form2" class="form" name="form" @submit.prevent="register">
               <h3 class="text-center text-info">Register</h3>
+
               <label for="username" class="text-info">Username:  </label>
-              <input class="form-control" type="text" id="userName" name="userName" v-model="userName">
+              <input class="form-control" type="text" id="userName" name="userName" required pattern="\S+" title="No se admiten espacios" v-model="userName">
               <br>
 
-              <label for="mail" class="text-info">Correo electrónico:  </label>
-              <input class="form-control" type="email" id="email" name="email" v-model="email" > 
+              <label for="mail" class="text-info">Email:  </label>
+              <input class="form-control" type="email" id="email" name="email" required pattern="\S+" title="No se admiten espacios" v-model="email" > 
               <br>
               
               <label for="mail" class="text-info">Name:  </label>
-              <input class="form-control" type="text" id="name" name="name" v-model="name">
+              <input class="form-control" type="text" id="name" name="name" required pattern="\S+" title="No se admiten espacios" v-model="name">
               <br>
               
               <label for="mail" class="text-info">Lastname:  </label>
-              <input class="form-control" type="text" id="lastname" name="lastname" v-model="lastname">
+              <input class="form-control" type="text" id="lastname" name="lastname" required pattern="\S+" title="No se admiten espacios" v-model="lastname">
               <br>
               
               <label for="mail" class="text-info">City:  </label>
-              <input class="form-control" type="text" id="city" name="city" v-model="city">
+              <input class="form-control" type="text" id="city" name="city" required pattern="\S+" title="No se admiten espacios" v-model="city">
               <br>
 
               <label for="mail" class="text-info">Password:  </label>
-              <input class="form-control" type="password" id="password" name="password" v-model="password">
+              <input class="form-control" type="password" id="password" name="password" required pattern="\S+" title="No se admiten espacios" v-model="password">
               <br>
               
-              <div style="text-align: center;"><button id="but_reg" class="btn btn-info btn-md" type="submit" value="Register"> Register </button></div>
+              <div style="text-align: center;"><button id="but_reg" class="btn btn-info btn-md" type="submit" value="Register"> Register </button></div> <br>
+
+
+              <div v-if="mensajeMalo" class="alert alert-danger" role="alert">
+                {{ this.mensajeMalo}}
+              </div>
+
+
             </form>
           </div>
         </div>
@@ -56,13 +64,14 @@ export default {
         name: "",
         lastname: "",
         city: "",
-        password: ""
+        password: "",
+        mensajeMalo: ""
     }
   },
   methods: {
     async register() {
         try {
-            await fetch('http://localhost:3000/api/user/registro', {
+            const response = await fetch('http://localhost:3000/api/user/registro', {
                 method: 'POST',
                 body: JSON.stringify({
                     userName: this.userName,
@@ -74,7 +83,14 @@ export default {
                     }),
                 headers: { 'Content-type': 'application/json; charset=UTF-8' },
             });
-            this.$router.push({path: 'login'});
+            var aux = await response.json()
+            console.log(aux)
+            if(aux.respuesta == "Ya existe un usuario con ese userName registrado"){
+              this.mensajeMalo ="Ya existe un usuario con ese email o nombre de usuario"
+            }else{
+              this.$router.push({path: 'login'});
+            }
+            
             
         } catch (error) {
             console.log(error);
