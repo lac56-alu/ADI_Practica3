@@ -17,7 +17,7 @@
           <table id="table" class="table">
             <div id="tabla-my-plans" name="tabla-my-plans">
               <div v-if="!mostrarPlans" class="alert alert-info" role="alert">
-                No existen planes
+                No existen planes creados por mi
               </div>
               <table v-if="mostrarPlans" class="table">
                 <thead style="background: #17a2b8 ">

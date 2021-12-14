@@ -13,7 +13,7 @@
         <h1 id="texto">Lista de lugares creados por mi:</h1> <br>
 
         <div v-if="!mostrarTabla" class="alert alert-info" role="alert">
-          No existen lugares
+          No existen lugares creados por mi
         </div>
 
         <div class="row" v-if="mostrarTabla">
