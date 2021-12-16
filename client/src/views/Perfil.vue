@@ -15,7 +15,7 @@
                     <div class="flip-box-back">
                         <br><br><br><br>
                         <h2>Bienvenido</h2>
-                        <h3> {{ this.usuario.user[0]['userName'] }} </h3>
+                        <h3> {{ this.perfil.user[0]['userName'] }} </h3>
                     </div>
                 </div>
             </div>
@@ -29,23 +29,23 @@
                     <table style="margin: 0 auto;">
                         <tr>
                             <th>UserName: </th>
-                            <td> {{ this.usuario.user[0]['userName'] }} </td>
+                            <td> {{ this.perfil.user[0]['userName'] }} </td>
                         </tr>
                         <tr>
                             <th>Nombre: </th>
-                            <td> {{ this.usuario.user[0]['name'] }} </td>
+                            <td> {{ this.perfil.user[0]['name'] }} </td>
                         </tr>
                         <tr>
                             <th>Apellidos: </th>
-                            <td> {{ this.usuario.user[0]['lastname']}} </td>
+                            <td> {{ this.perfil.user[0]['lastname']}} </td>
                         </tr>
                         <tr>
                             <th>Email: </th>
-                            <td> {{ this.usuario.user[0]['email'] }} </td>
+                            <td> {{ this.perfil.user[0]['email'] }} </td>
                         </tr>
                         <tr>
                             <th>Ciudad: </th>
-                            <td> {{ this.usuario.user[0]['city'] }} </td>
+                            <td> {{ this.perfil.user[0]['city'] }} </td>
                         </tr>
                     </table>
                 </div>
@@ -69,14 +69,15 @@ export default {
 
   data(){
     return{
-      usuario: []
+      perfil: ''
     }
   },
   
   created(){
     //console.log(this.$store.state.auth.user)
-    this.usuario = JSON.parse(this.$store.state.auth.user);
-    console.log(this.usuario)
+    console.log("LOCALSTORAGEEE")
+    this.perfil = JSON.parse(localStorage.getItem('user'))
+    console.log(this.perfil.user);
   }
 }
 
