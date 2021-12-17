@@ -87,7 +87,7 @@ export default {
     }
   },
   created() {
-    this.usuario = JSON.parse(this.$store.state.auth.user);
+    this.usuario = JSON.parse(localStorage.getItem('user'))
     console.log(this.registrado)
     if(localStorage.registrado){
       this.registrado = false
