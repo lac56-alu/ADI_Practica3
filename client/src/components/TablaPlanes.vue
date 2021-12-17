@@ -69,8 +69,9 @@ table thead {
 
 <script>
 import authservice from '../services/auth-header';
-
+import { getPlaceName } from '../services/PlacesService';
 import TablaDetallesPlanes from '@/components/TablaDetallesPlanes.vue';
+
 export default {
   name: 'tabla-plans',
   props: {
@@ -98,6 +99,9 @@ export default {
         this.detallesPlanes = aux['respuesta']
         if(this.detallesPlanes.length > 0){
           this.mostrarDetallesPlan = true
+          var name = await getPlaceName(this.detallesPlanes[0]['place_id'])
+          console.log(name)
+          this.detallesPlanes[0]['place_id'] = name
         }
 
       }catch (error)  {
